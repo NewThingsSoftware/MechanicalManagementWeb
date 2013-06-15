@@ -1,7 +1,7 @@
 package daos;
 
-import conecta.Conecta;
 import classes.Cliente;
+import conecta.Conecta;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,20 +14,43 @@ public class ClienteDAO {
     public ClienteDAO() {
         conecta = new Conecta();
     }
-    
-    public void incluirCliente(Cliente cliente)
-    {
-        
+
+    public void incluirCliente(Cliente cliente) {
+        if ("sucesso".equals(conecta.getMsg())) {
+            try {
+                if ("sucesso".equals(conecta.getMsg())) {
+                    String sql = "INSERT INTO APP.CLIENTES (NOME, CPF, RG)"
+                            + " VALUES ('" + cliente.getNome() + "','" + cliente.getCpf()
+                            + "', '" + cliente.getRg() + "' )";
+                    conecta.getStm().execute(sql);
+                } else {
+                    System.out.println("erro:" + conecta.getMsg());
+                }
+            } catch (SQLException sql) {
+                System.out.println(sql);
+            }
+        }
     }
-    
-    public void alterarCliente(Cliente cliente){
-        
+
+    public void alterarCliente(Cliente cliente) {
+        try {
+            if ("sucesso".equals(conecta.getMsg())) {
+                String sql = "UPDATE APP.CLIENTES SET NOME = '" + cliente.getNome() + "', "
+                        + " CPF = '" + cliente.getCpf() + "', RG = '" + cliente.getRg()
+                        + "' WHERE COD_CLIENTE = " + cliente.getCodCliente();
+                conecta.getStm().execute(sql);
+            } else {
+                System.out.println("erro:" + conecta.getMsg());
+            }
+        } catch (SQLException sql) {
+            System.out.println(sql);
+        }
     }
 
     public List<Cliente> obterTodos() {
         if ("sucesso".equals(conecta.getMsg())) {
             try {
-                String sql = "SELECT * FROM APP.A1_CLIENTE ORDER BY NOME";
+                String sql = "SELECT * FROM APP.A1_CLIENTES ORDER BY NOME";
                 ResultSet rs = conecta.getStm().executeQuery(sql);
                 List<Cliente> clientes = new ArrayList<Cliente>();
                 while (rs.next()) {
@@ -47,7 +70,7 @@ public class ClienteDAO {
     public Cliente obterPorCodigo(int codCliente) {
         if ("sucesso".equals(conecta.getMsg())) {
             try {
-                String sql = "SELECT * FROM APP.A1_CLIENTE WHERE COD_CLIENTE = " + codCliente;
+                String sql = "SELECT * FROM APP.A1_CLIENTES WHERE COD_CLIENTE = " + codCliente;
                 ResultSet rs = conecta.getStm().executeQuery(sql);
                 rs.next();
                 Cliente cliente = new Cliente(rs.getInt("COD_CLIENTE"),
