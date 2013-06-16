@@ -16,9 +16,38 @@ public class VeiculoDAO {
     }
 
     public void incluirVeiculo(Veiculo veiculo) {
+        if ("sucesso".equals(conecta.getMsg())) {
+            try {
+                if ("sucesso".equals(conecta.getMsg())) {
+                    String sql = "INSERT INTO APP.CLIENTES (PLACA, MARCA, MODELO, COD_CLIENTE_FK)"
+                            + " VALUES ('" + veiculo.getPlaca() + "','" + veiculo.getMarca()
+                            + "', '" + veiculo.getModelo() + "'"
+                            + "', '" + veiculo.getCodCliente() + "' )";
+                    conecta.getStm().execute(sql);
+                    System.out.println(sql);
+                } else {
+                    System.out.println("erro:" + conecta.getMsg());
+                }
+            } catch (SQLException sql) {
+                System.out.println(sql);
+            }
+        }
     }
 
     public void alterarVeiculo(Veiculo veiculo) {
+        try {
+            if ("sucesso".equals(conecta.getMsg())) {
+                String sql = "UPDATE APP.VEICULO SET PLACA = '" + veiculo.getPlaca() + "', "
+                        + " MARCA = '" + veiculo.getMarca() + "',"
+                        + " MODELO = '" + veiculo.getModelo() + "', COD_CLIENTE_FK = '" + veiculo.getCodCliente()
+                        + "' WHERE COD_VEICULO = " + veiculo.getCodVeiculo();
+                conecta.getStm().execute(sql);
+            } else {
+                System.out.println("erro:" + conecta.getMsg());
+            }
+        } catch (SQLException sql) {
+            System.out.println(sql);
+        }
     }
 
     public List<Veiculo> obterTodos() {
