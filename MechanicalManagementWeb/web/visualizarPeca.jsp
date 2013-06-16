@@ -12,8 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-        <link rel="stylesheet" href="Estilo/estilo.css" type="text/css" media="screen">
+        <title>Peças</title>
     </head>
     <body>
         <div align="center">
@@ -41,7 +40,7 @@
                 List<Peca> pecas = new PecaDAO().obterTodos();
                 if (request.getParameter("rFiltro") != null) {
                     if (request.getParameter("rFiltro").equals("porDescricao")) {
-                        pecas = new PecaDAO().obterPorNome(request.getParameter("filtro"));
+                        pecas = new PecaDAO().obterPorDescricao(request.getParameter("filtro"));
                     }
                 }
                 for (Peca peca : pecas) {
@@ -50,7 +49,7 @@
                     out.println("<td>" + peca.getPrecoCompra() + "</td>");
                     out.println("<td>" + peca.getPrecoVenda() + "</td>");
                     out.println("<td><form name=\"alterar\" action=\"peca.jsp\" method=\"POST\">");
-                    out.println("<input type=\"text\" name=\"codPeca\" id=\"codPeca\" value=\"" + peca.getCodPeca() + "\"/>");
+                    out.println("<input type=\"hidden\" name=\"codPeca\" id=\"codPeca\" value=\"" + peca.getCodPeca()+ "\"/>");
                     out.println("<input type=\"submit\" value=\"Alterar\" name=\"btAlterar\" id=\"btAlterar\" />");
                     out.println("</form></td>");
                 }
@@ -60,6 +59,6 @@
         </div>
 
 
-        <a href="index.jsp">Pagina Inicial</a>
+
     </body>
 </html>
