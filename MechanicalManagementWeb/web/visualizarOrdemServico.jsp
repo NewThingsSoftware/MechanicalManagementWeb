@@ -4,6 +4,7 @@
     Author     : Bruno
 --%>
 
+<%@page import="org.apache.catalina.connector.OutputBuffer"%>
 <%@page import="daos.ClienteDAO"%>
 <%@page import="classes.Cliente"%>
 <%@page import="daos.VeiculoDAO"%>
@@ -44,6 +45,7 @@
                 out.println("<th>Código OS</th>");
                 out.println("<th>Cliente</th>");
                 out.println("<th>Placa</th>");
+                out.println("<th>Mecânico</th>");
                 out.println("<th>Data</th>");
                 out.println("<th>Descrição</th>");
                 out.println("<th>Valor</th>");
@@ -63,12 +65,25 @@
                         ordemServicos = new OrdemServicoDAO().obterPorDescricao(request.getParameter("filtro"));
                     }
                 }
-                for(OrdemServico ordemServico : ordemServicos){
+                for (OrdemServico ordemServico : ordemServicos) {
                     Mecanico mecanico = new MecanicoDAO().obterPorCodigo(ordemServico.getCodMecanico());
                     Veiculo veiculo = new VeiculoDAO().obterPorCodigo(ordemServico.getCodVeiculo());
                     Cliente cliente = new ClienteDAO().obterPorCodigo(veiculo.getCodCliente());
+                    out.println("<tr onmouseover=\"this.style.background='white'\" onmouseout=\"this.style.background=''\">");
+                    out.println("<td>" + ordemServico.getCodOrdemServico() + "</td>");
+                    out.println("<td>" + cliente.getNome() + "</td>");
+                    out.println("<td>" + veiculo.getPlaca() + "</td>");
+                    out.println("<td>" + mecanico.getNome() + "</td>");
+                    out.println("<td>" + ordemServico.getData() + "</td>");
+                    out.println("<td>" + ordemServico.getDescricao() + "</td>");
+                    out.println("<td>" + ordemServico.getValorMaoObra() + "</td>");
+                    out.println("<td><form name=\"finalizar\" action=\"finalizarOrdemServico.jsp\" method=\"POST\">");
+                    out.println("<input type=\"hidden\" name=\"codOrdemServico\" id=\"codOrdemServico\" value=\"" + ordemServico.getCodOrdemServico() + "\"/>");
+                    out.println("<input type=\"submit\" value=\"Finalizar\" name=\"btFinalizar\" id=\"btFinalizar\" />");
+                    out.println("</form></td></tr>");
                 }
             %>
         </div>
+        <a href="index.jsp">Pagina Inicial</a>
     </body>
 </html>
