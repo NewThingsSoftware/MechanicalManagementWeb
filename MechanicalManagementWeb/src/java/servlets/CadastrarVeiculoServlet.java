@@ -1,3 +1,7 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package servlets;
 
 import classes.Veiculo;
@@ -10,9 +14,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "CadastraVeiculoServlet", urlPatterns = {"/CadastraVeiculoServlet"})
+/**
+ *
+ * @author Bruno
+ */
+@WebServlet(name = "CadastrarVeiculoServlet", urlPatterns = {"/CadastrarVeiculoServlet"})
 public class CadastrarVeiculoServlet extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP
+     * <code>GET</code> and
+     * <code>POST</code> methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -21,25 +39,23 @@ public class CadastrarVeiculoServlet extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CadastraVeiculoServlet</title>");            
+            out.println("<title>Servlet CadastrarVeiculoServlet</title>");
             out.println("</head>");
             out.println("<body>");
-
             Veiculo veiculo = new Veiculo();
-           
+
             veiculo.setMarca(request.getParameter("marca"));
             veiculo.setModelo(request.getParameter("modelo"));
             veiculo.setPlaca(request.getParameter("placa"));
             veiculo.setCodCliente(Integer.parseInt(request.getParameter("escolherCliente")));
-            
+
             System.out.println("oi");
             VeiculoDAO veiculoDAO = new VeiculoDAO();
-            veiculoDAO.incluirVeiculo(veiculo);  
+            veiculoDAO.incluirVeiculo(veiculo);
             response.sendRedirect("veiculo.jsp");
-            
             out.println("</body>");
             out.println("</html>");
-        } finally {            
+        } finally {
             out.close();
         }
     }
