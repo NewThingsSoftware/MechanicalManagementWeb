@@ -16,12 +16,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Ordem de Serviço</title>
+        <script type="text/javascript" src="Script/script.js"></script>
         <link rel="stylesheet" href="Estilo/estilo.css" type="text/css" media="screen">
     </head>
     <body>
         <div align="center">
             <fieldset style="width: 40%"><legend>Cliente</legend>
-                <form name="formCadOrdemServico" action="CadastrarOrdemServicoServlet" method="POST">
+                <form name="formCadOrdemServico" action="CadastrarOrdemServicoServlet" method="POST"
+                      onsubmit="return validaForm(this)">
                     <label for="data">Data</label>
                     <%String data = new SimpleDateFormat("dd/MM/yyyy").format(new Date(System.currentTimeMillis())).toString();%>
                     <input type="text" name="data" id="data" value="<%out.print(data);%>" size="10" readonly="readonly" />

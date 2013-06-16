@@ -19,8 +19,8 @@
             <fieldset style="width: 60%"><legend>Veiculo</legend>
                 <% if (request.getParameter("codVeiculo") == null) {
                 %>
-                <form name="formCadVeiculo" action="CadastrarVeiculoServlet" method="POST">
-
+                <form name="formCadVeiculo" action="CadastrarVeiculoServlet" method="POST"
+                      onsubmit="return validaForm(this)">
                     <label for="placa">Placa</label>
                     <input type="text" name="placa" id="placa" value="" size="40" />
                     <br />
@@ -44,7 +44,8 @@
                 </form>
                 <% // Se for alteração 
                 } else {%>
-                <form name="formAltVeiculo" action="AlterarVeiculoServlet" method="POST">
+                <form name="formAltVeiculo" action="AlterarVeiculoServlet" method="POST"
+                      onsubmit="return validaForm(this)">
 
 
                 </form>

@@ -12,12 +12,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Incluir Peça</title>
+        <script type="text/javascript" src="Script/script.js"></script>
         <link rel="stylesheet" href="Estilo/estilo.css" type="text/css" media="screen">
     </head>
     <body>
         <div align="center">
             <fieldset style="width: 40%"><legend>Incluir Peça</legend>
-                <form name="formIncluirPeca" action="IncluirPecaServlet" method="POST">
+                <form name="formIncluirPeca" action="IncluirPecaServlet" method="POST"
+                      onsubmit="return validaForm(this)">
                     <input type="hidden" name="codOrdemServico" value="<%out.print(request.getParameter("cod"));%>" />
                     <label for="peca">Peça</label>
                     <select name="peca" id="peca">

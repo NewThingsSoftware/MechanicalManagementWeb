@@ -12,6 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Cliente</title>
+        <script type="text/javascript" src="Script/script.js"></script>
         <link rel="stylesheet" href="Estilo/estilo.css" type="text/css" media="screen">
     </head>
     <body>
@@ -19,7 +20,8 @@
             <fieldset style="width: 70%"><legend>Cliente</legend>
                 <% if (request.getParameter("codCliente") == null) {
                 %>
-                <form name="formCadCliente" action="CadastrarClienteServlet" method="POST">
+                <form name="formCadCliente" action="CadastrarClienteServlet" method="POST"
+                      onsubmit="return validaForm(this)">
                     <label for="nome">Nome</label>
                     <input type="text" name="nome" id="nome" value="" size="150" />
                     <br />
@@ -32,7 +34,8 @@
                     <input type="submit" value="Gravar" name="btGravar" />
                 </form>
                 <%} else {%>
-                <form name="formAltCliente" action="AlterarClienteServlet" method="POST">
+                <form name="formAltCliente" action="AlterarClienteServlet" method="POST"
+                      onsubmit="return validaForm(this)">
                     <%Cliente cliente = new ClienteDAO().obterPorCodigo(Integer.parseInt(request.getParameter("codCliente")));%>
                     <input type="hidden" name="codCliente" value="<%out.print(cliente.getCodCliente());%>" />
                     <br />
