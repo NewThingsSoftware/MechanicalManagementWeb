@@ -1,6 +1,8 @@
 package daos;
 
+import classes.Peca;
 import conecta.Conecta;
+import java.sql.SQLException;
 
 public class PecaDAO {
     
@@ -10,7 +12,7 @@ public class PecaDAO {
         conecta = new Conecta();
     }
 
-    public void incluirPeca(Peca cliente) {
+    public void incluirPeca(Peca peca) {
         if ("sucesso".equals(conecta.getMsg())) {
             try {
                 if ("sucesso".equals(conecta.getMsg())) {

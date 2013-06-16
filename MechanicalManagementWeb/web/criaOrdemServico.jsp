@@ -30,7 +30,8 @@
                     <textarea name="descricao" id="descricao"  maxlength="150" rows="5" cols="30">
                     </textarea>
                     <br />
-                    <select name="veiculo">
+                    <label for="veiculo">Veiculo (Placa)</label>
+                    <select name="veiculo" id="veiculo">
                         <% int i = 0;
                             for (Veiculo veiculo : new VeiculoDAO().obterTodos()) {
                         %>
@@ -43,19 +44,22 @@
                                     i++;
                                 }%>
                     </select>
-                    <select name="mecanico">
+                    <br />
+                    <label for="mecanico">Mecânico</label>
+                    <select name="mecanico" id="mecanico">
                         <% i = 0;
-                            for (Mecanico peca : new MecanicoDAO().obterTodos) {
+                            for (Mecanico mecanico : new MecanicoDAO().obterTodos()) {
                         %>
-                        <option value="<%out.print(veiculo.getCodVeiculo());%>"
+                        <option value="<%out.print(mecanico.getCodMecanico());%>"
                                 <%if (i == 0) {%>
                                 selected="selected">
                             <%}%>
-                            <%out.print(veiculo.getPlaca());%></option>
+                            <%out.print(mecanico.getNome());%></option>
                             <%
                                     i++;
                                 }%>
                     </select>
+                    <br />
                     <input type="submit" value="Criar OS" name="btCriarOS" />
                 </form>
             </fieldset>
