@@ -40,7 +40,7 @@
                 List<Peca> pecas = new PecaDAO().obterTodos();
                 if (request.getParameter("rFiltro") != null) {
                     if (request.getParameter("rFiltro").equals("porDescricao")) {
-                        pecas = new PecaDAO().obterPorNome(request.getParameter("filtro"));
+                        pecas = new PecaDAO().obterPorDescricao(request.getParameter("filtro"));
                     }
                 }
                 for (Peca peca : pecas) {

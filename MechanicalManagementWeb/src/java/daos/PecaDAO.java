@@ -36,8 +36,9 @@ public class PecaDAO {
         try {
             if ("sucesso".equals(conecta.getMsg())) {
                 String sql = "UPDATE APP.PECA SET DESCRICAO = '" + peca.getDescricao() + "', "
-                        + " PRECO_COMPRA = " + peca.getPrecoCompra() + "', PRECO_VENDA = " + peca.getPrecoVenda()
+                        + " PRECO_COMPRA = " + peca.getPrecoCompra() + ", PRECO_VENDA = " + peca.getPrecoVenda()
                         + " WHERE COD_PECA = " + peca.getCodPeca();
+                System.out.println(sql);
                 conecta.getStm().execute(sql);
             } else {
                 System.out.println("erro:" + conecta.getMsg());

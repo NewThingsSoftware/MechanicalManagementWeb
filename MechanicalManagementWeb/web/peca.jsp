@@ -37,14 +37,14 @@
                     <%Peca peca = new PecaDAO().obterPorCodigo(Integer.parseInt(request.getParameter("codPeca")));%>
                     <input type="text" name="codPeca" value="<%out.print(peca.getCodPeca());%>" />
                     <br />
-                    <label for="descricaoA">Nome</label>
-                    <input type="text" name="descricaoA" id="descricaoA" value="<%out.print(peca.getDescricao());%>" size="80" />
+                    <label for="descricaoA">Descricao</label>
+                    <input type="text" name="descricao" id="descricaoA" value="<%out.print(peca.getDescricao());%>" size="80" />
                     <br />
-                    <label for="precoCompraA">CPF</label>
-                    <input type="text" name="precoCompraA" id="precoCompraA" value="<%out.print(peca.getPrecoCompra());%>" size="15" />
+                    <label for="precoCompraA">Preço de Compra</label>
+                    <input type="text" name="precoCompra" id="precoCompraA" value="<%out.print(peca.getPrecoCompra());%>" size="15" />
                     <br />
-                    <label for="precoVendaA">CPF</label>
-                    <input type="text" name="precoVendaA" id="precoVendaA" value="<%out.print(peca.getPrecoVenda());%>" size="15" />
+                    <label for="precoVendaA">Preço de Venda</label>
+                    <input type="text" name="precoVenda" id="precoVendaA" value="<%out.print(peca.getPrecoVenda());%>" size="15" />
                     <br />
                     <input type="submit" value="Alterar" name="btAlterar" />
                 </form>
