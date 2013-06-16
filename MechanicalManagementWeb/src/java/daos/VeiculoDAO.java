@@ -43,7 +43,23 @@ public class VeiculoDAO {
         return null;
     }
 
-    public Veiculo obterPorCodigo(int veiculo) {
+    public Veiculo obterPorCodigo(int codVeiculo) {
+
+        if ("sucesso".equals(conecta.getMsg())) {
+            try {
+                String sql = "SELECT * FROM APP.VEICULO WHERE COD_VEICULO = " + codVeiculo;
+                ResultSet rs = conecta.getStm().executeQuery(sql);
+                rs.next();
+                Veiculo veiculo = new Veiculo(rs.getInt("COD_VEICULO"),
+                        rs.getString("PLACA"),
+                        rs.getString("MARCA"),
+                        rs.getString("MODELO"),
+                        rs.getInt("COD_CLIENTE_FK"));
+                return veiculo;
+            } catch (SQLException sql) {
+                System.out.println(sql);
+            }
+        }
         return null;
     }
 }
