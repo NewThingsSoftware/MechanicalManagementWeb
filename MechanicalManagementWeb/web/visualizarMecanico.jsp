@@ -50,7 +50,7 @@
                     out.println("<td>" + mecanico.getCpf() + "</td>");
                     out.println("<td>" + mecanico.getRg() + "</td>");
                     out.println("<td><form name=\"alterar\" action=\"mecanico.jsp\" method=\"POST\">");
-                    out.println("<input type=\"text\" name=\"codMecanico\" id=\"codMecanico\" value=\"" + mecanico.getCodMecanico() + "\"/>");
+                    out.println("<input type=\"hidden\" name=\"codMecanico\" id=\"codMecanico\" value=\"" + mecanico.getCodMecanico() + "\"/>");
                     out.println("<input type=\"submit\" value=\"Alterar\" name=\"btAlterar\" id=\"btAlterar\" />");
                     out.println("</form></td>");
                 }
@@ -58,5 +58,6 @@
                 out.println("</table>");
             %>
         </div>
+        <a href="index.jsp">Pagina Inicial</a>
     </body>
 </html>

@@ -39,22 +39,22 @@ public class IncluirValorMaoObraServlet extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet IncluirValorMaoObraServlet</title>");            
+            out.println("<title>Servlet IncluirValorMaoObraServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            
-            out.println(request.getParameter("codOrdemServico"));
             OrdemServico ordemServico = new OrdemServicoDAO().obterPorCodigo(
-                    Integer.parseInt(request.getParameter("codOrdemServico")));
-            ordemServico.setValorMaoObra(Double.parseDouble(request.getParameter("valorMaoObra")));
+                        Integer.parseInt(request.getParameter("codOrdemServico")));
             
-            new OrdemServicoDAO().alterarOrdemServico(ordemServico);
+            if (!request.getParameter("valorMaoObra").equals("")) {
+                ordemServico.setValorMaoObra(Double.parseDouble(request.getParameter("valorMaoObra")));
+                new OrdemServicoDAO().alterarOrdemServico(ordemServico);
+            }
             
-            response.sendRedirect("finalizarOrdemServico.jsp?codOrdemServico="+ordemServico.getCodOrdemServico());
-            
+            response.sendRedirect("finalizarOrdemServico.jsp?codOrdemServico=" + ordemServico.getCodOrdemServico());
+
             out.println("</body>");
             out.println("</html>");
-        } finally {            
+        } finally {
             out.close();
         }
     }

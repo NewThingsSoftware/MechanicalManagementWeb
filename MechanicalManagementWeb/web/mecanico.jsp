@@ -12,6 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Mecânico</title>
+        <script type="text/javascript" src="Script/script.js"></script>
         <link rel="stylesheet" href="Estilo/estilo.css" type="text/css" media="screen">
     </head>
     <body>
@@ -19,7 +20,8 @@
             <fieldset style="width: 50%"><legend>Mecanico</legend>
                 <% if (request.getParameter("codMecanico") == null) {
                 %>
-                <form name="formCadMecanico" action="CadastrarMecanicoServlet" method="POST">
+                <form name="formCadMecanico" action="CadastrarMecanicoServlet" method="POST"
+                      onsubmit="return validaForm(this)">
 
                     <label for="nome">Nome</label>
                     <input type="text" name="nome" id="nome" value="" size="80" />
@@ -37,7 +39,8 @@
                 </form>
                 <% // Se for alteração 
                 } else {%>
-                <form name="formAltMecanico" action="AlterarMecanicoServlet" method="POST">
+                <form name="formAltMecanico" action="AlterarMecanicoServlet" method="POST"
+                      onsubmit="return validaForm(this)">
                     <%Mecanico mecanico = new MecanicoDAO().obterPorCodigo(Integer.parseInt(request.getParameter("codMecanico")));%>
                     <input type="text" name="codMecanico" value="<%out.print(mecanico.getCodMecanico());%>" />
                     <br />

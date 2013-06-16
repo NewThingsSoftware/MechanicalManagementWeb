@@ -19,8 +19,8 @@
             <fieldset style="width: 60%"><legend>Veiculo</legend>
                 <% if (request.getParameter("codVeiculo") == null) {
                 %>
-                <form name="formCadVeiculo" action="CadastrarVeiculoServlet" method="POST">
-
+                <form name="formCadVeiculo" action="CadastrarVeiculoServlet" method="POST"
+                      onsubmit="return validaForm(this)">
                     <label for="placa">Placa</label>
                     <input type="text" name="placa" id="placa" value="" size="40" />
                     <br />
@@ -31,8 +31,8 @@
                     <input type="text" name="modelo" id="modelo" value="" size="40" />
                     <br />
 
-                    <label for="dono">Dono</label>
-                    <select name="escolherCliente">
+                    <label for="escolherCliente">Dono</label>
+                    <select name="escolherCliente" id="escolherCliente">
                         <%for (Cliente cliente : new ClienteDAO().obterTodos()) {%>
                         <option value="<%out.print(cliente.getCodCliente());%>"> <%out.print(cliente.getNome());%> 
                         </option>
@@ -44,7 +44,8 @@
                 </form>
                 <% // Se for alteração 
                 } else {%>
-                <form name="formAltVeiculo" action="AlterarVeiculoServlet" method="POST">
+                <form name="formAltVeiculo" action="AlterarVeiculoServlet" method="POST"
+                      onsubmit="return validaForm(this)">
 
 
                 </form>

@@ -18,12 +18,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Finalizar Ordem de Serviço</title>
+        <script type="text/javascript" src="Script/script.js"></script>
         <link rel="stylesheet" href="Estilo/estilo.css" type="text/css" media="screen">
     </head>
     <body>
         <div align="center">
             <fieldset style="width: 40%"><legend>Finalizar Ordem de Serviço</legend>
-                <form name="formAltOrdemServico" action="AlterarOrdemServicoServlet" method="POST">
+                <form name="formAltOrdemServico" action="AlterarOrdemServicoServlet" method="POST"
+                      onsubmit="return validaForm(this)">
                     <%OrdemServico ordemServico = new OrdemServicoDAO().obterPorCodigo(Integer.parseInt(request.getParameter("codOrdemServico")));%>
                     <input type="hidden" name="codOrdemServico" value="<%out.print(ordemServico.getCodOrdemServico());%>" />
                     <label for="data">Data</label>
@@ -42,7 +44,8 @@
                     <label for="valorMaoObra">Valor do Serviço</label>
                     <input type="text" name="valorMaoObra" id="valorMaoObra" value="<%out.print(ordemServico.getValorMaoObra());%>" size="10"
                            onblur="document.location='IncluirValorMaoObraServlet?codOrdemServico='+
-                           <%out.print(ordemServico.getCodOrdemServico());%>+'&valorMaoObra='+this.value"/>
+                           <%out.print(ordemServico.getCodOrdemServico());%>+'&valorMaoObra='+this.value"
+                           onchange="validaNumero(this)" />
                     <br />
                     <label>Pecas usadas</label>
                     <br />
