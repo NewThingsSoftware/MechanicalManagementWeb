@@ -51,7 +51,11 @@ public class OrdemServicoDAO {
     public List<OrdemServico> obterTodos() {
         if ("sucesso".equals(conecta.getMsg())) {
             try {
-                String sql = "SELECT * FROM APP.ORDEM_SERVICO";
+                String sql = "SELECT * FROM APP.ORDEM_SERVICO OS, APP.MECANICO M, APP.CLIENTES C, APP.VEICULO V"
+                        + " WHERE OS.COD_VEICULO_FK = V.COD_VEICULO AND "
+                        + " V.COD_CLIENTE_FK = C.COD_CLIENTE AND "
+                        + " OS.COD_MECANICO_FK = M.COD_MECANICO "
+                        + " ORDER BY C.NOME, V.PLACA, OS.DATA DESC";
                 ResultSet rs = conecta.getStm().executeQuery(sql);
                 List<OrdemServico> ordemServicos = new ArrayList<OrdemServico>();
                 while (rs.next()) {
@@ -102,7 +106,8 @@ public class OrdemServicoDAO {
                         + " WHERE OS.COD_VEICULO_FK = V.COD_VEICULO AND "
                         + " V.COD_CLIENTE_FK = C.COD_CLIENTE AND "
                         + " OS.COD_MECANICO_FK = M.COD_MECANICO AND "
-                        + " UPPER(C.NOME) LIKE '%" + nome.toUpperCase() + "%'";
+                        + " UPPER(C.NOME) LIKE '%" + nome.toUpperCase() + "%' "
+                        + " ORDER BY C.NOME, V.PLACA, OS.DATA DESC";
                 ResultSet rs = conecta.getStm().executeQuery(sql);
                 System.out.println(sql);
                 List<OrdemServico> ordemServicos = new ArrayList<OrdemServico>();
@@ -133,7 +138,8 @@ public class OrdemServicoDAO {
                         + " WHERE OS.COD_VEICULO_FK = V.COD_VEICULO AND "
                         + " V.COD_CLIENTE_FK = C.COD_CLIENTE AND "
                         + " OS.COD_MECANICO_FK = M.COD_MECANICO AND "
-                        + " UPPER(V.PLACA) LIKE '%" + placa.toUpperCase() + "%'";
+                        + " UPPER(V.PLACA) LIKE '%" + placa.toUpperCase() + "%'"
+                        + " ORDER BY C.NOME, V.PLACA, OS.DATA DESC";
                 ResultSet rs = conecta.getStm().executeQuery(sql);
                 System.out.println(sql);
                 List<OrdemServico> ordemServicos = new ArrayList<OrdemServico>();
@@ -164,7 +170,8 @@ public class OrdemServicoDAO {
                         + " WHERE OS.COD_VEICULO_FK = V.COD_VEICULO AND "
                         + " V.COD_CLIENTE_FK = C.COD_CLIENTE AND "
                         + " OS.COD_MECANICO_FK = M.COD_MECANICO AND "
-                        + " UPPER(M.NOME) LIKE '%" + mecanico.toUpperCase() + "%'";
+                        + " UPPER(M.NOME) LIKE '%" + mecanico.toUpperCase() + "%'"
+                        + " ORDER BY C.NOME, V.PLACA, OS.DATA DESC";
                 ResultSet rs = conecta.getStm().executeQuery(sql);
                 System.out.println(sql);
                 List<OrdemServico> ordemServicos = new ArrayList<OrdemServico>();
@@ -196,7 +203,8 @@ public class OrdemServicoDAO {
                         + " WHERE OS.COD_VEICULO_FK = V.COD_VEICULO AND "
                         + " V.COD_CLIENTE_FK = C.COD_CLIENTE AND "
                         + " OS.COD_MECANICO_FK = M.COD_MECANICO AND "
-                        + " UPPER(OS.DESCRICAO) LIKE '%" + descricao.toUpperCase() + "%'";
+                        + " UPPER(OS.DESCRICAO) LIKE '%" + descricao.toUpperCase() + "%'"
+                        + " ORDER BY C.NOME, V.PLACA, OS.DATA DESC";
                 ResultSet rs = conecta.getStm().executeQuery(sql);
                 System.out.println(sql);
                 List<OrdemServico> ordemServicos = new ArrayList<OrdemServico>();

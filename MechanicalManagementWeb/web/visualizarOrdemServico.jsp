@@ -4,6 +4,7 @@
     Author     : Bruno
 --%>
 
+<%@page import="daos.PecaUsadaDAO"%>
 <%@page import="org.apache.catalina.connector.OutputBuffer"%>
 <%@page import="daos.ClienteDAO"%>
 <%@page import="classes.Cliente"%>
@@ -78,7 +79,7 @@
                     out.println("<td>" + mecanico.getNome() + "</td>");
                     out.println("<td>" + ordemServico.getData() + "</td>");
                     out.println("<td>" + ordemServico.getDescricao() + "</td>");
-                    out.println("<td>" + ordemServico.getValorMaoObra() + "</td>");
+                    out.println("<td>" + (new PecaUsadaDAO().totalPagar(ordemServico.getCodOrdemServico())+ordemServico.getValorMaoObra()) + "</td>");
                     if (ordemServico.getValorMaoObra() <= 0) {
                         out.println("<td><form name=\"finalizar\" action=\"finalizarOrdemServico.jsp\" method=\"POST\">");
                         out.println("<input type=\"hidden\" name=\"codOrdemServico\" id=\"codOrdemServico\" value=\"" + ordemServico.getCodOrdemServico() + "\"/>");

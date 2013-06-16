@@ -27,8 +27,7 @@
                     <br />
                     <label for="descricao">Descrição do Problema</label>
                     <br />
-                    <textarea name="descricao" id="descricao"  maxlength="150" rows="5" cols="30">
-                    </textarea>
+                    <textarea name="descricao" id="descricao"  maxlength="150" rows="5" cols="30"></textarea>
                     <br />
                     <label for="veiculo">Veiculo (Placa)</label>
                     <select name="veiculo" id="veiculo">
@@ -37,8 +36,9 @@
                         %>
                         <option value="<%out.print(veiculo.getCodVeiculo());%>"
                                 <%if (i == 0) {%>
-                                selected="selected">
-                            <%}%>
+                                selected="selected"
+                                <%}%>
+                                >
                             <%out.print(veiculo.getPlaca());%></option>
                             <%
                                     i++;
@@ -52,8 +52,9 @@
                         %>
                         <option value="<%out.print(mecanico.getCodMecanico());%>"
                                 <%if (i == 0) {%>
-                                selected="selected">
-                            <%}%>
+                                selected="selected"
+                                <%}%>
+                                >
                             <%out.print(mecanico.getNome());%></option>
                             <%
                                     i++;

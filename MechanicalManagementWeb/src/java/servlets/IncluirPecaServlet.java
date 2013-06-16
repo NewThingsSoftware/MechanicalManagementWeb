@@ -5,7 +5,9 @@
 package servlets;
 
 import classes.OrdemServico;
+import classes.PecaUsada;
 import daos.OrdemServicoDAO;
+import daos.PecaUsadaDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -18,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Bruno
  */
-@WebServlet(name = "AlterarOrdemServicoServlet", urlPatterns = {"/AlterarOrdemServicoServlet"})
-public class AlterarOrdemServicoServlet extends HttpServlet {
+@WebServlet(name = "IncluirPecaServlet", urlPatterns = {"/IncluirPecaServlet"})
+public class IncluirPecaServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -39,17 +41,17 @@ public class AlterarOrdemServicoServlet extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AlterarOrdemServicoServlet</title>");            
+            out.println("<title>Servlet IncluirPecaServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-           
-            OrdemServico ordemServico = new OrdemServicoDAO().obterPorCodigo(
-                    Integer.parseInt(request.getParameter("codOrdemServico")));
-            ordemServico.setValorMaoObra(Double.parseDouble(request.getParameter("valorMaoObra")));
             
-            new OrdemServicoDAO().alterarOrdemServico(ordemServico);
+            PecaUsada pecaUsada = new PecaUsada();
+            pecaUsada.setCodOrdemServico(Integer.parseInt(request.getParameter("codOrdemServico")));
+            pecaUsada.setCodPeca(Integer.parseInt(request.getParameter("peca")));
+            pecaUsada.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
+            new PecaUsadaDAO().incluir(pecaUsada);
             
-            response.sendRedirect("visualizarOrdemServico.jsp");
+            response.sendRedirect("finalizarOrdemServico.jsp?codOrdemServico="+request.getParameter("codOrdemServico"));
             
             out.println("</body>");
             out.println("</html>");
