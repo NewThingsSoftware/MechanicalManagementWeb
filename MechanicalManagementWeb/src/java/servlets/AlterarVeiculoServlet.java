@@ -1,9 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlets;
 
+import classes.Veiculo;
+import daos.VeiculoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,35 +10,31 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Bruno
- */
 @WebServlet(name = "AlterarVeiculoServlet", urlPatterns = {"/AlterarVeiculoServlet"})
 public class AlterarVeiculoServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP
-     * <code>GET</code> and
-     * <code>POST</code> methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            /* TODO output your page here. You may use following sample code. */
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet AlterarVeiculoServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AlterarVeiculoServlet at " + request.getContextPath() + "</h1>");
+
+            Veiculo veiculo = new Veiculo();
+            veiculo.setCodVeiculo(Integer.parseInt(request.getParameter("codVeiculo")));
+            veiculo.setMarca(request.getParameter("marca"));   
+            veiculo.setModelo(request.getParameter("modelo"));
+            veiculo.setPlaca(request.getParameter("placa"));
+            veiculo.setCodCliente(Integer.parseInt(request.getParameter("escolherCliente")));
+
+            VeiculoDAO veiculoDAO = new VeiculoDAO();
+            veiculoDAO.alterarVeiculo(veiculo);
+            response.sendRedirect("visualizarVeiculo.jsp");
+            
             out.println("</body>");
             out.println("</html>");
         } finally {            

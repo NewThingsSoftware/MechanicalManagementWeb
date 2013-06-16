@@ -40,8 +40,9 @@ public class VeiculoDAO {
             if ("sucesso".equals(conecta.getMsg())) {
                 String sql = "UPDATE APP.VEICULO SET PLACA = '" + veiculo.getPlaca() + "', "
                         + " MARCA = '" + veiculo.getMarca() + "',"
-                        + " MODELO = '" + veiculo.getModelo() + "', COD_CLIENTE_FK = '" + veiculo.getCodCliente()
-                        + "' WHERE COD_VEICULO = " + veiculo.getCodVeiculo();
+                        + " MODELO = '" + veiculo.getModelo() + "', COD_CLIENTE_FK = " + veiculo.getCodCliente()
+                        + " WHERE COD_VEICULO = " + veiculo.getCodVeiculo();
+                System.out.println(sql);
                 conecta.getStm().execute(sql);
             } else {
                 System.out.println("erro:" + conecta.getMsg());

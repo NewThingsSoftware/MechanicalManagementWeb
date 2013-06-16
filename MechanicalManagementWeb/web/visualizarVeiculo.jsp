@@ -27,7 +27,7 @@
                 <br />
                 <input type="radio" name="rFiltro" value="porCliente" checked="checked" /> Por Cliente
                 <br />
-                <input type="radio" name="rFiltro" value="porMarca"/> Por Marca
+                <input type="radio" name="rFiltro" value="porPlaca"/> Por Placa
                 <br />
 
                 <br><br>
@@ -48,8 +48,8 @@
                     if (request.getParameter("rFiltro").equals("porCliente")) {
                         veiculos = new VeiculoDAO().obterPorCliente(request.getParameter("filtro"));
                     }
-                    if (request.getParameter("rFiltro").equals("placa")) {
-                        //veiculos = new ().obterPorPlaca(request.getParameter("filtro"));
+                    if (request.getParameter("rFiltro").equals("porPlaca")) {
+                        veiculos = new VeiculoDAO().obterPorPlaca(request.getParameter("filtro"));
                     }
                 }
                 for (Veiculo veiculo : veiculos) {
@@ -61,7 +61,7 @@
                     out.println("<td>" + cliente.getNome() + "</td>");
                     out.println("<td><form name=\"Alterar\" action=\"veiculo.jsp\" method=\"POST\">");
                     out.println("<input type=\"hidden\" name=\"codVeiculo\" id=\"codVeiculo\" value=\"" + veiculo.getCodVeiculo() + "\"/>");
-                    out.println("<input type=\"submit\" value=\"Altear\" name=\"btAlterar\" id=\"btAlterar\" />");
+                    out.println("<input type=\"submit\" value=\"Alterar\" name=\"btAlterar\" id=\"btAlterar\" />");
                     out.println("</form></td>");
                 }
                 out.println("</tr>");
