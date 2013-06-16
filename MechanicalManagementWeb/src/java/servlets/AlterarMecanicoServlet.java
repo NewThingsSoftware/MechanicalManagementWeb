@@ -1,5 +1,7 @@
 package servlets;
 
+import classes.Mecanico;
+import daos.MecanicoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -21,7 +23,18 @@ public class AlterarMecanicoServlet extends HttpServlet {
             out.println("<title>Servlet AlterarMecanicoServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AlterarMecanicoServlet at " + request.getContextPath() + "</h1>");
+
+            Mecanico mecanico = new Mecanico();
+            mecanico.setCodMecanico(Integer.parseInt(request.getParameter("codMecanico")));
+            mecanico.setNome(request.getParameter("nome"));
+            mecanico.setCpf(request.getParameter("cpf"));
+            mecanico.setRg(request.getParameter("rg"));
+            
+            MecanicoDAO mecanicoDAO = new MecanicoDAO();
+            mecanicoDAO.alterarMecanico(mecanico);
+            
+            response.sendRedirect("visualizarMecanico.jsp");
+            
             out.println("</body>");
             out.println("</html>");
         } finally {            

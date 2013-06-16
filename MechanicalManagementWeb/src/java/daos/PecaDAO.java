@@ -85,4 +85,30 @@ public class PecaDAO {
         }
         return null;
     }
+    
+       public List<Peca> obterPorDescricao(String descricao) {
+        if (descricao.equals("")) {
+            return obterTodos();
+        }
+        if ("sucesso".equals(conecta.getMsg())) {
+            try {
+                String sql = "SELECT * FROM APP.PECA WHERE UPPER(DESCRICAO) LIKE '%" + descricao.toUpperCase() + "%' ORDER BY DESCRICAO";
+                ResultSet rs = conecta.getStm().executeQuery(sql);
+                System.out.println(sql);
+                List<Peca> pecas = new ArrayList<Peca>();
+                while (rs.next()) {
+                    pecas.add(new Peca(
+                            rs.getInt("COD_PECA"),
+                            rs.getString("DESCRICAO"),
+                            rs.getDouble("PRECO_COMPRA"),
+                            rs.getDouble("PRECO_VENDA")));
+                }
+                return pecas;
+            } catch (SQLException sql) {
+                System.out.println(sql);
+            }
+        }
+        return null;
+    }
+       
 }

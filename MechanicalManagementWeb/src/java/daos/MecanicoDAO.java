@@ -38,6 +38,7 @@ public class MecanicoDAO {
                 String sql = "UPDATE APP.MECANICO SET NOME = '" + mecanico.getNome() + "', "
                         + " CPF = '" + mecanico.getCpf() + "', RG = '" + mecanico.getRg()
                         + "' WHERE COD_MECANICO = " + mecanico.getCodMecanico();
+                System.out.println(sql);
                 conecta.getStm().execute(sql);
             } else {
                 System.out.println("erro:" + conecta.getMsg());
@@ -78,6 +79,31 @@ public class MecanicoDAO {
                         rs.getString("CPF"),
                         rs.getString("RG"));
                 return mecanico;
+            } catch (SQLException sql) {
+                System.out.println(sql);
+            }
+        }
+        return null;
+    }
+    
+    public List<Mecanico> obterPorNome(String nome) {
+        if (nome.equals("")) {
+            return obterTodos();
+        }
+        if ("sucesso".equals(conecta.getMsg())) {
+            try {
+                String sql = "SELECT * FROM APP.MECANICO WHERE UPPER(NOME) LIKE '%" + nome.toUpperCase() + "%' ORDER BY NOME";
+                ResultSet rs = conecta.getStm().executeQuery(sql);
+                System.out.println(sql);
+                List<Mecanico> mecanicos = new ArrayList<Mecanico>();
+                while (rs.next()) {
+                    mecanicos.add(new Mecanico(
+                            rs.getInt("COD_MECANICO"),
+                            rs.getString("NOME"),
+                            rs.getString("CPF"),
+                            rs.getString("RG")));
+                }
+                return mecanicos;
             } catch (SQLException sql) {
                 System.out.println(sql);
             }
