@@ -1,9 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlets;
 
+import classes.Peca;
+import daos.PecaDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,40 +10,34 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Bruno
- */
 @WebServlet(name = "CadastrarPecaServlet", urlPatterns = {"/CadastrarPecaServlet"})
 public class CadastrarPecaServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP
-     * <code>GET</code> and
-     * <code>POST</code> methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            /* TODO output your page here. You may use following sample code. */
+
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CadastrarPecaServlet</title>");            
+            out.println("<title>Servlet CadastrarPecaServlet</title>");
             out.println("</head>");
             out.println("<body>");
-           
-            
-            
+
+            Peca peca = new Peca();
+            peca.setDescricao(request.getParameter("descricao"));
+            peca.setPrecoCompra(Double.parseDouble(request.getParameter("precoCompra")));
+            peca.setPrecoVenda(Double.parseDouble(request.getParameter("precoVenda")));
+            PecaDAO pecaDAO = new PecaDAO();
+            pecaDAO.incluirPeca(peca);
+
+            response.sendRedirect("visualizarCliente.jsp");
+
+
             out.println("</body>");
             out.println("</html>");
-        } finally {            
+        } finally {
             out.close();
         }
     }
