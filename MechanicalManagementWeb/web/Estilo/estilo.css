@@ -1,3 +1,35 @@
 body{
-    color: red;
+    font-family: verdana;
+    font-size: 12px;
+}
+
+table thead{
+    background: lightpink;
+    font-family: verdana;
+    font-size: 12px;
+
+    border-color: darkgrey;
+}
+table tbody tr:nth-child(2n+1) { 
+    background:darksalmon;
+   
+    font-size: 12px;
+}
+
+
+label, a, legend, input{
+    font-family: verdana;
+    font-size: 12px;
+}
+h1{
+    text-align: center;
+    color: palevioletred;
+    font-family: Verdana;
+    font-size: 20px;
+}
+
+b, a{
+    font-family: verdana;
+    color: palevioletred;
+    font-size: 12px;
 }
