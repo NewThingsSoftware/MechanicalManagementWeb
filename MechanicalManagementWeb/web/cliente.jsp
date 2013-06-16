@@ -34,13 +34,13 @@
                 <%} else {%>
                 <form name="formAltCliente" action="AlterarClienteServlet" method="POST">
                     <%Cliente cliente = new ClienteDAO().obterPorCodigo(Integer.parseInt(request.getParameter("codCliente")));%>
-                    <input type="hidden" name="codCliente" value="<%out.print(cliente.getCodCliente());%>150" />
+                    <input type="hidden" name="codCliente" value="<%out.print(cliente.getCodCliente());%>" />
                     <br />
                     <label for="nomeA">Nome</label>
-                    <input type="text" name="nome" id="nomeA" value="<%out.print(cliente.getNome());%>" size="150" />
+                    <input type="text" name="nome" id="nomeA" value="<%out.print(cliente.getNome());%>" size="80" />
                     <br />
                     <label for="cpfA">CPF</label>
-                    <input type="text" name="cpf" id="cpfA" value="<%out.print(cliente.getNome());%>" size="15" />
+                    <input type="text" name="cpf" id="cpfA" value="<%out.print(cliente.getCpf());%>" size="15" />
                     <br />
                     <label for="rgA">RG</label>
                     <input type="text" name="rg" id="rgA" value="<%out.print(cliente.getRg());%>" size="13" />

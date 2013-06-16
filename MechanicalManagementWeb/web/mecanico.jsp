@@ -4,6 +4,8 @@
     Author     : Bruno
 --%>
 
+<%@page import="daos.MecanicoDAO"%>
+<%@page import="classes.Mecanico"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -24,7 +26,7 @@
                     <br />
                     <label for="cpf">CPF</label>
                     <input type="text" name="cpf" id="cpf" value="" size="15" />
-                 
+
                     <label for="rg">RG</label>
                     <input type="text" name="rg" id="rg" value="" size="13" />
                     <br />
@@ -36,8 +38,19 @@
                 <% // Se for alteração 
                 } else {%>
                 <form name="formAltMecanico" action="AlterarMecanicoServlet" method="POST">
-
-
+                    <%Mecanico mecanico = new MecanicoDAO().obterPorCodigo(Integer.parseInt(request.getParameter("codMecanico")));%>
+                    <input type="text" name="codMecanico" value="<%out.print(mecanico.getCodMecanico());%>" />
+                    <br />
+                    <label for="nomeA">Nome</label>
+                    <input type="text" name="nome" id="nomeA" value="<%out.print(mecanico.getNome());%>" size="80" />
+                    <br />
+                    <label for="cpfA">CPF</label>
+                    <input type="text" name="cpf" id="cpfA" value="<%out.print(mecanico.getCpf());%>" size="15" />
+                    <br />
+                    <label for="rgA">RG</label>
+                    <input type="text" name="rg" id="rgA" value="<%out.print(mecanico.getRg());%>" size="13" />
+                    <br />
+                    <input type="submit" value="Alterar" name="btAlterar" />
                 </form>
                 <%}%>
             </fieldset>
