@@ -50,7 +50,7 @@ public class ClienteDAO {
     public List<Cliente> obterTodos() {
         if ("sucesso".equals(conecta.getMsg())) {
             try {
-                String sql = "SELECT * FROM APP.A1_CLIENTES ORDER BY NOME";
+                String sql = "SELECT * FROM APP.CLIENTES ORDER BY NOME";
                 ResultSet rs = conecta.getStm().executeQuery(sql);
                 List<Cliente> clientes = new ArrayList<Cliente>();
                 while (rs.next()) {
@@ -70,7 +70,7 @@ public class ClienteDAO {
     public Cliente obterPorCodigo(int codCliente) {
         if ("sucesso".equals(conecta.getMsg())) {
             try {
-                String sql = "SELECT * FROM APP.A1_CLIENTES WHERE COD_CLIENTE = " + codCliente;
+                String sql = "SELECT * FROM APP.CLIENTES WHERE COD_CLIENTE = " + codCliente;
                 ResultSet rs = conecta.getStm().executeQuery(sql);
                 rs.next();
                 Cliente cliente = new Cliente(rs.getInt("COD_CLIENTE"),

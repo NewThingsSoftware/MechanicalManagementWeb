@@ -1,6 +1,6 @@
 <%-- 
-    Document   : ordemServico
-    Created on : 15/06/2013, 17:38:46
+    Document   : finalizarOrdemServico
+    Created on : 15/06/2013, 22:25:02
     Author     : Bruno
 --%>
 
@@ -9,19 +9,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Ordem de Serviço</title>
+        <title>JSP Page</title>
     </head>
     <body>
         <div align="center">
             <fieldset style="width: 40%"><legend>Cliente</legend>
-                <% if (request.getParameter("codOrdemServico") == null) {
-                %>
-                <form name="formCadOrdemServico" action="CadastrarOrdemServicoServlet" method="POST">
-
-
-                </form>
-                <% // Se for alteração 
-                    }%>
                 <form name="formAltOrdemServico" action="AlterarOrdemServicoServlet" method="POST">
 
 

@@ -4,13 +4,19 @@
  */
 package servlets;
 
+import classes.OrdemServico;
+import daos.OrdemServicoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import sun.beans.editors.IntEditor;
 
 /**
  *
@@ -37,13 +43,29 @@ public class CadastrarOrdemServicoServlet extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CadastrarOrdemServicoServlet</title>");            
+            out.println("<title>Servlet CadastrarOrdemServicoServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CadastrarOrdemServicoServlet at " + request.getContextPath() + "</h1>");
+            try {
+                OrdemServico ordemServico = new OrdemServico();
+                ordemServico.setData(new java.sql.Date(
+                        new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("data")).getTime()));
+                ordemServico.setDescricao(request.getParameter("descricao"));
+                ordemServico.setCodVeiculo(Integer.parseInt(request.getParameter("veiculo")));
+                ordemServico.setCodMecanico(Integer.parseInt(request.getParameter("mecanico")));
+                OrdemServicoDAO ordemServicoDAO = new OrdemServicoDAO();
+                ordemServicoDAO.incluirOrdemServico(ordemServico);
+                
+                response.sendRedirect("visualizarOrdemServico.jsp");
+                
+            } catch (ParseException ex) {
+                out.println("<h1>Data informada com formato errado</h1>");
+                out.println("<br />");
+                out.println("<a href=\"criaOrdemServico.jsp\">Voltar para o cadastro</a>");
+            }
             out.println("</body>");
             out.println("</html>");
-        } finally {            
+        } finally {
             out.close();
         }
     }

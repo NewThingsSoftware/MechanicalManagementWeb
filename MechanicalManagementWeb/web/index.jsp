@@ -13,5 +13,6 @@
     </head>
     <body>
         <a href="cliente.jsp">Cliente</a>
+        <a href="criaOrdemServico.jsp">Criar Ordem de Serviço</a>
     </body>
 </html>
