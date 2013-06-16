@@ -50,6 +50,7 @@
                 out.println("<th>Descrição</th>");
                 out.println("<th>Valor</th>");
                 out.println("<th>Finalizar</th>");
+                out.println("<tr>");
                 out.println("</thead>");
                 List<OrdemServico> ordemServicos = new OrdemServicoDAO().obterTodos();
                 if (request.getParameter("rFiltro") != null) {
@@ -70,7 +71,7 @@
                     Mecanico mecanico = new MecanicoDAO().obterPorCodigo(ordemServico.getCodMecanico());
                     Veiculo veiculo = new VeiculoDAO().obterPorCodigo(ordemServico.getCodVeiculo());
                     Cliente cliente = new ClienteDAO().obterPorCodigo(veiculo.getCodCliente());
-                    out.println("<tr onmouseover=\"this.style.background='white'\" onmouseout=\"this.style.background=''\">");
+                    out.println("<tr onmouseover=\"this.style.background='green'\" onmouseout=\"this.style.background=''\">");
                     out.println("<td>" + ordemServico.getCodOrdemServico() + "</td>");
                     out.println("<td>" + cliente.getNome() + "</td>");
                     out.println("<td>" + veiculo.getPlaca() + "</td>");
@@ -88,6 +89,7 @@
                     }
                     out.println("</tr>");
                 }
+                out.println("</table>");
             %>
         </div>
         <a href="index.jsp">Pagina Inicial</a>
