@@ -4,6 +4,8 @@
     Author     : Bruno
 --%>
 
+<%@page import="daos.OrdemServicoDAO"%>
+<%@page import="classes.OrdemServico"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,9 +15,9 @@
     </head>
     <body>
         <div align="center">
-            <fieldset style="width: 40%"><legend>Cliente</legend>
+            <fieldset style="width: 40%"><legend>Finalizar Ordem de Serviço</legend>
                 <form name="formAltOrdemServico" action="AlterarOrdemServicoServlet" method="POST">
-
+                    <%OrdemServico ordemServico = new OrdemServicoDAO().obterPorCodigo(Integer.parseInt(request.getParameter("codOrdemServico"))); %>
 
                 </form>
             </fieldset>
