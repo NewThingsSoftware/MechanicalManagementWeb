@@ -16,12 +16,12 @@
     </head>
     <body>
         <div align="center">
-            <fieldset style="width: 40%"><legend>Cliente</legend>
+            <fieldset style="width: 40%"><legend>Peças</legend>
                 <% if (request.getParameter("codPeca") == null) {
                 %>
                 <form name="formCadPeca" action="CadastrarPecaServlet" method="POST">
                     <label for="descricao">Descrição</label>
-                    <input type="text" name="descricao" id="descricao" value="" size="100" />
+                    <input type="text" name="descricao" id="descricao" value="" size="70" />
                     <br />
                     <label for="precoCompra">Preço de Compra</label>
                     <input type="text" name="precoCompra" id="precoCompra" value="" size="15" />
@@ -36,10 +36,10 @@
                 <form name="formAltPeca" action="AlterarPecaServlet" method="POST">
                     
                     <%Peca peca = new PecaDAO().obterPorCodigo(Integer.parseInt(request.getParameter("codPeca")));%>
-                    <input type="text" name="codPeca" value="<%out.print(peca.getCodPeca());%>" />
+                    <input type="hidden" name="codPeca" value="<%out.print(peca.getCodPeca());%>" />
                     <br />
-                    <label for="descricaoA">Descricao</label>
-                    <input type="text" name="descricao" id="descricaoA" value="<%out.print(peca.getDescricao());%>" size="80" />
+                    <label for="descricaoA">Descrição da Peça</label>
+                    <input type="text" name="descricao" id="descricaoA" value="<%out.print(peca.getDescricao());%>" size="70" />
                     <br />
                     <label for="precoCompraA">Preço de Compra</label>
                     <input type="text" name="precoCompra" id="precoCompraA" value="<%out.print(peca.getPrecoCompra());%>" size="15" />
