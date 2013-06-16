@@ -23,9 +23,9 @@ public class VeiculoDAO {
                             + " VALUES ('" + veiculo.getPlaca() + "','" + veiculo.getMarca()
                             + "', '" + veiculo.getModelo() + "'"
                             + ", " + veiculo.getCodCliente() + " )";
-                   System.out.println(sql);
+                    System.out.println(sql);
                     conecta.getStm().execute(sql);
-                    
+
                 } else {
                     System.out.println("erro:" + conecta.getMsg());
                 }
@@ -74,7 +74,6 @@ public class VeiculoDAO {
     }
 
     public Veiculo obterPorCodigo(int codVeiculo) {
-
         if ("sucesso".equals(conecta.getMsg())) {
             try {
                 String sql = "SELECT * FROM APP.VEICULO WHERE COD_VEICULO = " + codVeiculo;
@@ -92,26 +91,51 @@ public class VeiculoDAO {
         }
         return null;
     }
-    
-     public Veiculo obterPorCliente(int nomeCliente) {
 
+    public List<Veiculo> obterPorCliente(String nomeCliente) {
         if ("sucesso".equals(conecta.getMsg())) {
             try {
-                String sql = "SELECT A.PLACA, A.MARCA, A.MODELO, B.NOME FROM APP.VEICULO A, APP.CLIENTES B WHERE A.COD_CLIENTE_FK = B.COD_CLIENTE AND UPPER(NOME) LIKE '%" +  nomeCliente.toUpperCase() + "%'";
+                String sql = "SELECT * FROM APP.VEICULO V, APP.CLIENTES C WHERE "
+                        + "V.COD_CLIENTE_FK = C.COD_CLIENTE "
+                        + "AND UPPER(C.NOME) LIKE '%" + nomeCliente.toUpperCase() + "%'";
                 ResultSet rs = conecta.getStm().executeQuery(sql);
-                rs.next();
-                Veiculo veiculo = new Veiculo(rs.getInt("COD_VEICULO"),
-                        rs.getString("PLACA"),
-                        rs.getString("MARCA"),
-                        rs.getString("MODELO"),
-                        rs.getInt("COD_CLIENTE_FK"));
-                return veiculo;
+                List<Veiculo> veiculos = new ArrayList<Veiculo>();
+                while (rs.next()) {
+                    veiculos.add(new Veiculo(
+                            rs.getInt("COD_VEICULO"),
+                            rs.getString("PLACA"),
+                            rs.getString("MARCA"),
+                            rs.getString("MODELO"),
+                            rs.getInt("COD_CLIENTE_FK")));
+                }
+                return veiculos;
             } catch (SQLException sql) {
                 System.out.println(sql);
             }
         }
         return null;
     }
-    
-    
+
+    public List<Veiculo> obterPorPlaca(String placa) {
+        if ("sucesso".equals(conecta.getMsg())) {
+            try {
+                String sql = "SELECT * FROM APP.VEICULO WHERE UPPER(PLACA) "
+                        + "LIKE '%" + placa.toUpperCase() + "%'";
+                ResultSet rs = conecta.getStm().executeQuery(sql);
+                List<Veiculo> veiculos = new ArrayList<Veiculo>();
+                while (rs.next()) {
+                    veiculos.add(new Veiculo(
+                            rs.getInt("COD_VEICULO"),
+                            rs.getString("PLACA"),
+                            rs.getString("MARCA"),
+                            rs.getString("MODELO"),
+                            rs.getInt("COD_CLIENTE_FK")));
+                }
+                return veiculos;
+            } catch (SQLException sql) {
+                System.out.println(sql);
+            }
+        }
+        return null;
+    }
 }
