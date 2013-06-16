@@ -4,6 +4,10 @@
     Author     : Bruno
 --%>
 
+<%@page import="daos.MecanicoDAO"%>
+<%@page import="classes.Mecanico"%>
+<%@page import="daos.VeiculoDAO"%>
+<%@page import="classes.Veiculo"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Date"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -27,10 +31,30 @@
                     </textarea>
                     <br />
                     <select name="veiculo">
-                        <option value=""></option>
+                        <% int i = 0;
+                            for (Veiculo veiculo : new VeiculoDAO().obterTodos()) {
+                        %>
+                        <option value="<%out.print(veiculo.getCodVeiculo());%>"
+                                <%if (i == 0) {%>
+                                selected="selected">
+                            <%}%>
+                            <%out.print(veiculo.getPlaca());%></option>
+                            <%
+                                    i++;
+                                }%>
                     </select>
                     <select name="mecanico">
-                        <option value=""></option>
+                        <% i = 0;
+                            for (Mecanico peca : new MecanicoDAO().obterTodos) {
+                        %>
+                        <option value="<%out.print(veiculo.getCodVeiculo());%>"
+                                <%if (i == 0) {%>
+                                selected="selected">
+                            <%}%>
+                            <%out.print(veiculo.getPlaca());%></option>
+                            <%
+                                    i++;
+                                }%>
                     </select>
                     <input type="submit" value="Criar OS" name="btCriarOS" />
                 </form>
