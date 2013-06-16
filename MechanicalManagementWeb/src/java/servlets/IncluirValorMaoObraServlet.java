@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Bruno
  */
-@WebServlet(name = "AlterarOrdemServicoServlet", urlPatterns = {"/AlterarOrdemServicoServlet"})
-public class AlterarOrdemServicoServlet extends HttpServlet {
+@WebServlet(name = "IncluirValorMaoObraServlet", urlPatterns = {"/IncluirValorMaoObraServlet"})
+public class IncluirValorMaoObraServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -39,17 +39,18 @@ public class AlterarOrdemServicoServlet extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AlterarOrdemServicoServlet</title>");            
+            out.println("<title>Servlet IncluirValorMaoObraServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-           
+            
+            out.println(request.getParameter("codOrdemServico"));
             OrdemServico ordemServico = new OrdemServicoDAO().obterPorCodigo(
                     Integer.parseInt(request.getParameter("codOrdemServico")));
             ordemServico.setValorMaoObra(Double.parseDouble(request.getParameter("valorMaoObra")));
             
             new OrdemServicoDAO().alterarOrdemServico(ordemServico);
             
-            response.sendRedirect("visualizarOrdemServico.jsp");
+            response.sendRedirect("finalizarOrdemServico.jsp?codOrdemServico="+ordemServico.getCodOrdemServico());
             
             out.println("</body>");
             out.println("</html>");

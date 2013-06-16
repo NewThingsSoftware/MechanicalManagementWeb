@@ -38,8 +38,10 @@
                     <label for="mecanico">Mecânico</label>
                     <input type="text" name="mecanico" id="mecanico" value="<%out.print(new MecanicoDAO().obterPorCodigo(ordemServico.getCodMecanico()).getNome());%>" readonly="readonly" size="8" />
                     <br />
-                    <label for="valorServico">Valor do Serviço</label>
-                    <input type="text" name="valorServico" id="valorServico" value="" size="10" />
+                    <label for="valorMaoObra">Valor do Serviço</label>
+                    <input type="text" name="valorMaoObra" id="valorMaoObra" value="<%out.print(ordemServico.getValorMaoObra());%>" size="10"
+                           onblur="document.location='IncluirValorMaoObraServlet?codOrdemServico='+
+                           <%out.print(ordemServico.getCodOrdemServico());%>+'&valorMaoObra='+this.value"/>
                     <br />
                     <label>Pecas usadas</label>
                     <br />
