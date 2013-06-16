@@ -36,8 +36,9 @@
                         %>
                         <option value="<%out.print(veiculo.getCodVeiculo());%>"
                                 <%if (i == 0) {%>
-                                selected="selected">
-                            <%}%>
+                                selected="selected"
+                                <%}%>
+                                >
                             <%out.print(veiculo.getPlaca());%></option>
                             <%
                                     i++;
@@ -51,8 +52,9 @@
                         %>
                         <option value="<%out.print(mecanico.getCodMecanico());%>"
                                 <%if (i == 0) {%>
-                                selected="selected">
-                            <%}%>
+                                selected="selected"
+                                <%}%>
+                                >
                             <%out.print(mecanico.getNome());%></option>
                             <%
                                     i++;

@@ -23,7 +23,6 @@ public class PecaDAO {
                             + " VALUES ('" + peca.getDescricao() + "'," + peca.getPrecoCompra()
                             + ", " + peca.getPrecoVenda() + " )";
                     conecta.getStm().execute(sql);
-                    System.out.println(sql);
                 } else {
                     System.out.println("erro:" + conecta.getMsg());
                 }
@@ -51,14 +50,14 @@ public class PecaDAO {
     public List<Peca> obterTodos() {
         if ("sucesso".equals(conecta.getMsg())) {
             try {
-                String sql = "SELECT * FROM APP.PECA ORDER BY NOME";
+                String sql = "SELECT * FROM APP.PECA ORDER BY DESCRICAO";
                 ResultSet rs = conecta.getStm().executeQuery(sql);
                 List<Peca> peca = new ArrayList<Peca>();
                 while (rs.next()) {
                     peca.add(new Peca(rs.getInt("COD_PECA"),
-                            rs.getString("PRECO_COMPRA"),
+                            rs.getString("DESCRICAO"),
                             rs.getDouble("PRECO_COMPRA"),
-                            rs.getDouble("PECO_VENDA")));
+                            rs.getDouble("PRECO_VENDA")));
                 }
                 return peca;
             } catch (SQLException sql) {
@@ -71,7 +70,7 @@ public class PecaDAO {
     public Peca obterPorCodigo(int codPeca) {
         if ("sucesso".equals(conecta.getMsg())) {
             try {
-                String sql = "SELECT * FROM APP.PECA WHERE COD_PECA = " + codPeca;
+                String sql = "SELECT * FROM APP.PECA WHERE COD_PECA = " + codPeca + " ORDER BY DESCRICAO";
                 ResultSet rs = conecta.getStm().executeQuery(sql);
                 rs.next();
                 Peca peca = new Peca(rs.getInt("COD_PECA"),

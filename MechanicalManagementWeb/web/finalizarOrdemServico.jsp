@@ -4,6 +4,8 @@
     Author     : Bruno
 --%>
 
+<%@page import="daos.PecaDAO"%>
+<%@page import="classes.Peca"%>
 <%@page import="daos.PecaUsadaDAO"%>
 <%@page import="classes.PecaUsada"%>
 <%@page import="daos.MecanicoDAO"%>
@@ -39,6 +41,8 @@
                     <label for="valorServico">Valor do Serviço</label>
                     <input type="text" name="valorServico" id="valorServico" value="" size="10" />
                     <br />
+                    <label>Pecas usadas</label>
+                    <br />
                     <%
                         out.println("<table border=2px cellpadding=5px cellspacing=0>");
                         out.println("<thead>");
@@ -49,17 +53,27 @@
                         out.println("<th>Valor Total</th>");
                         out.println("<tr>");
                         out.println("</thead>");
-                        //for(PecaUsada pecaUsada: new PecaUsadaDAO()){
-                            
-                       // }
+                        for (PecaUsada pecaUsada : new PecaUsadaDAO().obterPorOrdemServico(ordemServico.getCodOrdemServico())) {
+                            Peca peca = new PecaDAO().obterPorCodigo(pecaUsada.getCodPeca());
+                            out.println("<tr onmouseover=\"this.style.background='green'\" onmouseout=\"this.style.background=''\">");
+                            out.println("<td>" + peca.getDescricao() + "</td>");
+                            out.println("<td>" + pecaUsada.getQuantidade() + "</td>");
+                            out.println("<td>" + peca.getPrecoVenda() + "</td>");
+                            out.println("<td>" + (peca.getPrecoVenda() * pecaUsada.getQuantidade()) + "</td>");
+                            out.println("</tr>");
+                        }
                         out.println("</table>");
 
                     %>
                     <br />
-                    <input type="button" value="Incluir Peca" name="btIncluirPeca" onclick="incluirPeca.jsp"/>
+                    <input type="button" value="Incluir Peca" name="btIncluirPeca" onclick="document.location='incluirPeca.jsp?cod=<%out.print(ordemServico.getCodOrdemServico());%>'"/>
+                    <br />
                     <br />
                     <label for="valor">Valor Total</label>
-                    <input type="text" name="valor" id="valor" value="" size="10" readonly="readonly" />
+                    <input type="text" name="valor" id="valor" value="<%out.print((new PecaUsadaDAO().totalPagar(ordemServico.getCodOrdemServico())+ordemServico.getValorMaoObra()));%>" size="10" readonly="readonly" />
+                    <br />
+                    <br />
+                    <input type="submit" value="Finalizar" name="btFinalizar" />
                 </form>
             </fieldset>
         </div>
