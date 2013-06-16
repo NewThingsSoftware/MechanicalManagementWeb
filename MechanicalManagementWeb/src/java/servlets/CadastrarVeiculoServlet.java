@@ -52,7 +52,7 @@ public class CadastrarVeiculoServlet extends HttpServlet {
             System.out.println("oi");
             VeiculoDAO veiculoDAO = new VeiculoDAO();
             veiculoDAO.incluirVeiculo(veiculo);
-            response.sendRedirect("veiculo.jsp");
+            response.sendRedirect("visualizarVeiculo.jsp");
             out.println("</body>");
             out.println("</html>");
         } finally {

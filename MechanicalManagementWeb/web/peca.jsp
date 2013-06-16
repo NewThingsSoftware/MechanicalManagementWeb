@@ -26,10 +26,12 @@
                     <input type="text" name="descricao" id="descricao" value="" size="70" />
                     <br />
                     <label for="precoCompra">Preço de Compra</label>
-                    <input type="text" name="precoCompra" id="precoCompra" value="" size="15" />
+                    <input type="text" name="precoCompra" id="precoCompra" value="" size="15"
+                           onblur="validaNumero(this)"/>
 
                     <label for="precoVenda">Preço de Venda</label>
-                    <input type="text" name="precoVenda" id="precoVenda" value="" size="13" />
+                    <input type="text" name="precoVenda" id="precoVenda" value="" size="13" 
+                           onblur="validaNumero(this)"/>
                     <br />
                     <input type="submit" value="Gravar" name="btGravar" />
                 </form>
@@ -44,10 +46,12 @@
                     <input type="text" name="descricao" id="descricaoA" value="<%out.print(peca.getDescricao());%>" size="70" />
                     <br />
                     <label for="precoCompraA">Preço de Compra</label>
-                    <input type="text" name="precoCompra" id="precoCompraA" value="<%out.print(peca.getPrecoCompra());%>" size="15" />
+                    <input type="text" name="precoCompra" id="precoCompraA" value="<%out.print(peca.getPrecoCompra());%>" size="15" 
+                           onblur="validaNumero(this)"/>
                     <br />
                     <label for="precoVendaA">Preço de Venda</label>
-                    <input type="text" name="precoVenda" id="precoVendaA" value="<%out.print(peca.getPrecoVenda());%>" size="15" />
+                    <input type="text" name="precoVenda" id="precoVendaA" value="<%out.print(peca.getPrecoVenda());%>" size="15" 
+                           onblur="validaNumero(this)"/>
                     <br />
                     <input type="submit" value="Alterar" name="btAlterar" />
                 </form>

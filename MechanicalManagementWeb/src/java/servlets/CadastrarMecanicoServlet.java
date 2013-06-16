@@ -32,7 +32,7 @@ public class CadastrarMecanicoServlet extends HttpServlet {
             MecanicoDAO mecanicoDAO = new MecanicoDAO();
             mecanicoDAO.incluirMecanico(mecanico);
             
-            response.sendRedirect("mecanico.jsp");
+            response.sendRedirect("visualizarMecanico.jsp");
             
             out.println("</body>");
             out.println("</html>");

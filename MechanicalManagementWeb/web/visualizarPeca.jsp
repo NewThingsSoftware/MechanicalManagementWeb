@@ -49,7 +49,7 @@
                     out.println("<td>" + peca.getPrecoCompra() + "</td>");
                     out.println("<td>" + peca.getPrecoVenda() + "</td>");
                     out.println("<td><form name=\"alterar\" action=\"peca.jsp\" method=\"POST\">");
-                    out.println("<input type=\"hidden\" name=\"codPeca\" id=\"codPeca\" value=\"" + peca.getCodPeca()+ "\"/>");
+                    out.println("<input type=\"hidden\" name=\"codPeca\" id=\"codPeca\" value=\"" + peca.getCodPeca() + "\"/>");
                     out.println("<input type=\"submit\" value=\"Alterar\" name=\"btAlterar\" id=\"btAlterar\" />");
                     out.println("</form></td>");
                 }
@@ -57,8 +57,6 @@
                 out.println("</table>");
             %>
         </div>
-
-
-
+        <a href="index.jsp">Pagina Inicial</a>
     </body>
 </html>

@@ -42,7 +42,7 @@
                 <form name="formAltMecanico" action="AlterarMecanicoServlet" method="POST"
                       onsubmit="return validaForm(this)">
                     <%Mecanico mecanico = new MecanicoDAO().obterPorCodigo(Integer.parseInt(request.getParameter("codMecanico")));%>
-                    <input type="text" name="codMecanico" value="<%out.print(mecanico.getCodMecanico());%>" />
+                    <input type="hidden" name="codMecanico" value="<%out.print(mecanico.getCodMecanico());%>" />
                     <br />
                     <label for="nomeA">Nome</label>
                     <input type="text" name="nome" id="nomeA" value="<%out.print(mecanico.getNome());%>" size="80" />
