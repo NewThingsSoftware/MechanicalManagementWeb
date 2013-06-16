@@ -10,6 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <link rel="stylesheet" href="Estilo/estilo.css" type="text/css" media="screen">
     </head>
     <body>
         <a href="cliente.jsp">Cadastro de Clientes</a><br>
