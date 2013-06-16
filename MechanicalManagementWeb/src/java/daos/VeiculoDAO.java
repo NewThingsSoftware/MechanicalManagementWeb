@@ -92,4 +92,26 @@ public class VeiculoDAO {
         }
         return null;
     }
+    
+     public Veiculo obterPorCliente(int nomeCliente) {
+
+        if ("sucesso".equals(conecta.getMsg())) {
+            try {
+                String sql = "SELECT A.PLACA, A.MARCA, A.MODELO, B.NOME FROM APP.VEICULO A, APP.CLIENTES B WHERE A.COD_CLIENTE_FK = B.COD_CLIENTE AND UPPER(NOME) LIKE '%" +  nomeCliente.toUpperCase() + "%'";
+                ResultSet rs = conecta.getStm().executeQuery(sql);
+                rs.next();
+                Veiculo veiculo = new Veiculo(rs.getInt("COD_VEICULO"),
+                        rs.getString("PLACA"),
+                        rs.getString("MARCA"),
+                        rs.getString("MODELO"),
+                        rs.getInt("COD_CLIENTE_FK"));
+                return veiculo;
+            } catch (SQLException sql) {
+                System.out.println(sql);
+            }
+        }
+        return null;
+    }
+    
+    
 }
