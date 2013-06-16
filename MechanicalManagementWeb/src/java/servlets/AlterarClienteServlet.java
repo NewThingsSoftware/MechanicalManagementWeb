@@ -4,6 +4,8 @@
  */
 package servlets;
 
+import classes.Cliente;
+import daos.ClienteDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -37,13 +39,25 @@ public class AlterarClienteServlet extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AlterarClienteServlet</title>");            
+            out.println("<title>Servlet AlterarClienteServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AlterarClienteServlet at " + request.getContextPath() + "</h1>");
+            
+            Cliente cliente = new Cliente();
+            cliente.setCodCliente(Integer.parseInt(request.getParameter("codCliente")));
+            cliente.setNome(request.getParameter("nome"));
+            cliente.setCpf(request.getParameter("cpf"));
+            cliente.setRg(request.getParameter("rg"));
+            
+            ClienteDAO clienteDAO = new ClienteDAO();
+            clienteDAO.alterarCliente(cliente);
+            
+            response.sendRedirect("visualizarCliente.jsp");
+            
+
             out.println("</body>");
             out.println("</html>");
-        } finally {            
+        } finally {
             out.close();
         }
     }

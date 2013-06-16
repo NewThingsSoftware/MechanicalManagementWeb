@@ -4,6 +4,8 @@
  */
 package servlets;
 
+import classes.Cliente;
+import daos.ClienteDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -40,7 +42,17 @@ public class CadastrarClienteServlet extends HttpServlet {
             out.println("<title>Servlet CadastrarClienteServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CadastrarClienteServlet at " + request.getContextPath() + "</h1>");
+            
+            Cliente cliente = new Cliente();
+            cliente.setNome(request.getParameter("nome"));
+            cliente.setCpf(request.getParameter("cpf"));
+            cliente.setRg(request.getParameter("rg"));
+            
+            ClienteDAO clienteDAO = new ClienteDAO();
+            clienteDAO.incluirCliente(cliente);
+            
+            response.sendRedirect("visualizarCliente.jsp");
+            
             out.println("</body>");
             out.println("</html>");
         } finally {            
