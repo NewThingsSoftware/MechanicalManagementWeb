@@ -12,7 +12,13 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <a href="cliente.jsp">Cliente</a>
-        <a href="criaOrdemServico.jsp">Criar Ordem de Serviço</a>
+        <a href="cliente.jsp">Cadastro de Clientes</a><br>
+        <a href="peca.jsp">Cadastro de Peças</a> <br>
+        <a href="mecanico.jsp">Cadastro de Mecanico</a><br>
+        <a href="veiculo.jsp">Cadastro de Veículo</a><br>
+        <a href="criaOrdemServico.jsp">Criar Ordem de Serviço</a><br>
+        <a href="visualizarOrdemServico.jsp">Visualizar Ordens de Serviço</a><br>
+        
+        
     </body>
 </html>

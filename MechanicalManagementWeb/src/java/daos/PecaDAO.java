@@ -23,6 +23,7 @@ public class PecaDAO {
                             + " VALUES ('" + peca.getDescricao() + "'," + peca.getPrecoCompra()
                             + ", " + peca.getPrecoVenda() + " )";
                     conecta.getStm().execute(sql);
+                    System.out.println(sql);
                 } else {
                     System.out.println("erro:" + conecta.getMsg());
                 }
