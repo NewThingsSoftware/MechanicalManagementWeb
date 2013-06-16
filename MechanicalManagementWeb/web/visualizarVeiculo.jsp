@@ -4,6 +4,8 @@
     Author     : Bruno
 --%>
 
+<%@page import="classes.Cliente"%>
+<%@page import="daos.ClienteDAO"%>
 <%@page import="classes.Veiculo"%>
 <%@page import="java.util.List"%>
 <%@page import="daos.VeiculoDAO"%>
@@ -16,7 +18,7 @@
         <link rel="stylesheet" href="Estilo/estilo.css" type="text/css" media="screen">
     </head>
     <body>
-      <div align="center">
+        <div align="center">
             <center><h1>Veículos</h1></center>
             <br /><br />
             <form name="meuForm" action="visualizarVeiculo.jsp" method="POST">
@@ -27,10 +29,10 @@
                 <br />
                 <input type="radio" name="rFiltro" value="porMarca"/> Por Marca
                 <br />
-                
+
                 <br><br>
             </form>
-            <%                
+            <%
                 out.println("<table border=2px cellpadding=5px cellspacing=0>");
                 out.println("<thead>");
                 out.println("<tr>");
@@ -44,44 +46,29 @@
                 List<Veiculo> veiculos = new VeiculoDAO().obterTodos();
                 if (request.getParameter("rFiltro") != null) {
                     if (request.getParameter("rFiltro").equals("porCliente")) {
-                        veiculos = new VeiculoDAO().ob(request.getParameter("filtro"));
+                        veiculos = new VeiculoDAO().obterPorCliente(request.getParameter("filtro"));
                     }
                     if (request.getParameter("rFiltro").equals("placa")) {
-                        ordemServicos = new OrdemServicoDAO().obterPorPlaca(request.getParameter("filtro"));
-                    }
-                    if (request.getParameter("rFiltro").equals("mecanico")) {
-                        ordemServicos = new OrdemServicoDAO().obterPorMecanico(request.getParameter("filtro"));
-                    }
-                    if (request.getParameter("rFiltro").equals("descricao")) {
-                        ordemServicos = new OrdemServicoDAO().obterPorDescricao(request.getParameter("filtro"));
+                        //veiculos = new ().obterPorPlaca(request.getParameter("filtro"));
                     }
                 }
-                for (OrdemServico ordemServico : ordemServicos) {
-                    Mecanico mecanico = new MecanicoDAO().obterPorCodigo(ordemServico.getCodMecanico());
-                    Veiculo veiculo = new VeiculoDAO().obterPorCodigo(ordemServico.getCodVeiculo());
+                for (Veiculo veiculo : veiculos) {
                     Cliente cliente = new ClienteDAO().obterPorCodigo(veiculo.getCodCliente());
                     out.println("<tr onmouseover=\"this.style.background='green'\" onmouseout=\"this.style.background=''\">");
-                    out.println("<td>" + ordemServico.getCodOrdemServico() + "</td>");
-                    out.println("<td>" + cliente.getNome() + "</td>");
                     out.println("<td>" + veiculo.getPlaca() + "</td>");
-                    out.println("<td>" + mecanico.getNome() + "</td>");
-                    out.println("<td>" + ordemServico.getData() + "</td>");
-                    out.println("<td>" + ordemServico.getDescricao() + "</td>");
-                    out.println("<td>" + (new PecaUsadaDAO().totalPagar(ordemServico.getCodOrdemServico())+ordemServico.getValorMaoObra()) + "</td>");
-                    if (ordemServico.getValorMaoObra() <= 0) {
-                        out.println("<td><form name=\"finalizar\" action=\"finalizarOrdemServico.jsp\" method=\"POST\">");
-                        out.println("<input type=\"hidden\" name=\"codOrdemServico\" id=\"codOrdemServico\" value=\"" + ordemServico.getCodOrdemServico() + "\"/>");
-                        out.println("<input type=\"submit\" value=\"Finalizar\" name=\"btFinalizar\" id=\"btFinalizar\" />");
-                        out.println("</form></td>");
-                    } else {
-                        out.print("<td>Finalizada</td>");
-                    }
-                    out.println("</tr>");
+                    out.println("<td>" + veiculo.getModelo() + "</td>");
+                    out.println("<td>" + veiculo.getMarca() + "</td>");
+                    out.println("<td>" + cliente.getNome() + "</td>");
+                    out.println("<td><form name=\"Alterar\" action=\"veiculo.jsp\" method=\"POST\">");
+                    out.println("<input type=\"hidden\" name=\"codVeiculo\" id=\"codVeiculo\" value=\"" + veiculo.getCodVeiculo() + "\"/>");
+                    out.println("<input type=\"submit\" value=\"Altear\" name=\"btAlterar\" id=\"btAlterar\" />");
+                    out.println("</form></td>");
                 }
+                out.println("</tr>");
                 out.println("</table>");
             %>
         </div>
-        
-        
+
+
     </body>
 </html>
