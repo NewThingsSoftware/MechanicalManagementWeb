@@ -38,7 +38,7 @@
                 <input type="radio" name="rFiltro" value="descricao"/>Buscar pela descrição do problema
                 <br><br>
             </form>
-            <%
+            <%                
                 out.println("<table border=2px cellpadding=5px cellspacing=0>");
                 out.println("<thead>");
                 out.println("<tr>");
@@ -49,6 +49,7 @@
                 out.println("<th>Data</th>");
                 out.println("<th>Descrição</th>");
                 out.println("<th>Valor</th>");
+                out.println("<th>Finalizar</th>");
                 out.println("</thead>");
                 List<OrdemServico> ordemServicos = new OrdemServicoDAO().obterTodos();
                 if (request.getParameter("rFiltro") != null) {
@@ -77,10 +78,15 @@
                     out.println("<td>" + ordemServico.getData() + "</td>");
                     out.println("<td>" + ordemServico.getDescricao() + "</td>");
                     out.println("<td>" + ordemServico.getValorMaoObra() + "</td>");
-                    out.println("<td><form name=\"finalizar\" action=\"finalizarOrdemServico.jsp\" method=\"POST\">");
-                    out.println("<input type=\"hidden\" name=\"codOrdemServico\" id=\"codOrdemServico\" value=\"" + ordemServico.getCodOrdemServico() + "\"/>");
-                    out.println("<input type=\"submit\" value=\"Finalizar\" name=\"btFinalizar\" id=\"btFinalizar\" />");
-                    out.println("</form></td></tr>");
+                    if (ordemServico.getValorMaoObra() <= 0) {
+                        out.println("<td><form name=\"finalizar\" action=\"finalizarOrdemServico.jsp\" method=\"POST\">");
+                        out.println("<input type=\"hidden\" name=\"codOrdemServico\" id=\"codOrdemServico\" value=\"" + ordemServico.getCodOrdemServico() + "\"/>");
+                        out.println("<input type=\"submit\" value=\"Finalizar\" name=\"btFinalizar\" id=\"btFinalizar\" />");
+                        out.println("</form></td>");
+                    } else {
+                        out.print("<td>Finalizada</td>");
+                    }
+                    out.println("</tr>");
                 }
             %>
         </div>
