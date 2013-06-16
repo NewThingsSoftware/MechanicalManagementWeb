@@ -29,15 +29,15 @@
                     <label for="modelo">Modelo</label>
                     <input type="text" name="modelo" id="modelo" value="" size="40" />
                     <br />
-                    
-                     <label for="dono">Dono</label>
-                       <select name="escolherCliente">
-                    <%for (Cliente cliente : new ClienteDAO().obterTodos()) {%>
-                    <option value="<%out.print(cliente.getCodCliente());%>"> <%out.print(cliente.getNome());%> 
-                    </option>
-                    <% }%>
-                </select>
-                    
+
+                    <label for="dono">Dono</label>
+                    <select name="escolherCliente">
+                        <%for (Cliente cliente : new ClienteDAO().obterTodos()) {%>
+                        <option value="<%out.print(cliente.getCodCliente());%>"> <%out.print(cliente.getNome());%> 
+                        </option>
+                        <% }%>
+                    </select>
+
                     <input type="submit" value="Gravar" name="btGravar" />
 
                 </form>
