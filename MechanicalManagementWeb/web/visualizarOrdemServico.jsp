@@ -4,6 +4,15 @@
     Author     : Bruno
 --%>
 
+<%@page import="daos.ClienteDAO"%>
+<%@page import="classes.Cliente"%>
+<%@page import="daos.VeiculoDAO"%>
+<%@page import="classes.Veiculo"%>
+<%@page import="daos.MecanicoDAO"%>
+<%@page import="classes.Mecanico"%>
+<%@page import="daos.OrdemServicoDAO"%>
+<%@page import="classes.OrdemServico"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,7 +22,7 @@
     </head>
     <body>
         <div align="center">
-            <center><h1>Emprestimos</h1></center>
+            <center><h1>Ordens de Serviço</h1></center>
             <br /><br />
             <form name="meuForm" action="visualizarOrdemServico.jsp" method="POST">
                 <input type="text" name="filtro" id="filtro" value="" size="100"/>
@@ -28,6 +37,38 @@
                 <input type="radio" name="rFiltro" value="descricao"/>Buscar pela descrição do problema
                 <br><br>
             </form>
+            <%
+                out.println("<table border=2px cellpadding=5px cellspacing=0>");
+                out.println("<thead>");
+                out.println("<tr>");
+                out.println("<th>Código OS</th>");
+                out.println("<th>Cliente</th>");
+                out.println("<th>Placa</th>");
+                out.println("<th>Data</th>");
+                out.println("<th>Descrição</th>");
+                out.println("<th>Valor</th>");
+                out.println("</thead>");
+                List<OrdemServico> ordemServicos = new OrdemServicoDAO().obterTodos();
+                if (request.getParameter("rFiltro") != null) {
+                    if (request.getParameter("rFiltro").equals("cliente")) {
+                        ordemServicos = new OrdemServicoDAO().obterPorCliente(request.getParameter("filtro"));
+                    }
+                    if (request.getParameter("rFiltro").equals("placa")) {
+                        ordemServicos = new OrdemServicoDAO().obterPorPlaca(request.getParameter("filtro"));
+                    }
+                    if (request.getParameter("rFiltro").equals("mecanico")) {
+                        ordemServicos = new OrdemServicoDAO().obterPorMecanico(request.getParameter("filtro"));
+                    }
+                    if (request.getParameter("rFiltro").equals("descricao")) {
+                        ordemServicos = new OrdemServicoDAO().obterPorDescricao(request.getParameter("filtro"));
+                    }
+                }
+                for(OrdemServico ordemServico : ordemServicos){
+                    Mecanico mecanico = new MecanicoDAO().obterPorCodigo(ordemServico.getCodMecanico());
+                    Veiculo veiculo = new VeiculoDAO().obterPorCodigo(ordemServico.getCodVeiculo());
+                    Cliente cliente = new ClienteDAO().obterPorCodigo(veiculo.getCodCliente());
+                }
+            %>
         </div>
     </body>
 </html>

@@ -91,4 +91,20 @@ public class OrdemServicoDAO {
         }
         return null;
     }
+
+    public List<OrdemServico> obterPorCliente(String nome) {
+        return null;
+    }
+
+    public List<OrdemServico> obterPorPlaca(String placa) {
+        return null;
+    }
+
+    public List<OrdemServico> obterPorMecanico(String mecanico) {
+        return null;
+    }
+
+    public List<OrdemServico> obterPorDescricao(String descricao) {
+        return null;
+    }
 }
