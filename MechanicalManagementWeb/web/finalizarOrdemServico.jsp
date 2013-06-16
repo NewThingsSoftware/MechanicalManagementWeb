@@ -18,7 +18,20 @@
             <fieldset style="width: 40%"><legend>Finalizar Ordem de Serviço</legend>
                 <form name="formAltOrdemServico" action="AlterarOrdemServicoServlet" method="POST">
                     <%OrdemServico ordemServico = new OrdemServicoDAO().obterPorCodigo(Integer.parseInt(request.getParameter("codOrdemServico"))); %>
-
+                    <input type="hidden" name="codOrdemServico" value="<%out.print(ordemServico.getCodOrdemServico());%>" />
+                    <label for="data">Data</label>
+                    <input type="text" name="data" id="data" value="<%out.print(ordemServico.getData());%>" size="10" readonly="readonly" />
+                    <br />
+                    <label for="descricao">Descrição do Problema</label>
+                    <br />
+                    <textarea name="descricao" id="descricao" rows="5" cols="30" readonly="readonly">
+                        <%out.print(ordemServico.getDescricao());%>
+                    </textarea>
+                    <br />
+                    <label for="veiculo">Veiculo (Placa)</label>
+                    <input type="text" name="veiculo" id="veiculo" value="" readonly="readonly" size="8" />
+                
+                
                 </form>
             </fieldset>
         </div>
