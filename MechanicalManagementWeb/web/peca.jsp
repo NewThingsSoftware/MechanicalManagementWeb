@@ -20,7 +20,8 @@
             <fieldset style="width: 40%"><legend>Peças</legend>
                 <% if (request.getParameter("codPeca") == null) {
                 %>
-                <form name="formCadPeca" action="CadastrarPecaServlet" method="POST">
+                <form name="formCadPeca" action="CadastrarPecaServlet" method="POST"
+                      onsubmit="return validaForm(this)">
                     <label for="descricao">Descrição</label>
                     <input type="text" name="descricao" id="descricao" value="" size="70" />
                     <br />
@@ -34,8 +35,8 @@
                 </form>
                 <% // Se for alteração 
                 } else {%>
-                <form name="formAltPeca" action="AlterarPecaServlet" method="POST">
-                    
+                <form name="formAltPeca" action="AlterarPecaServlet" method="POST"
+                      onsubmit="return validaForm(this)">
                     <%Peca peca = new PecaDAO().obterPorCodigo(Integer.parseInt(request.getParameter("codPeca")));%>
                     <input type="hidden" name="codPeca" value="<%out.print(peca.getCodPeca());%>" />
                     <br />
@@ -49,7 +50,6 @@
                     <input type="text" name="precoVenda" id="precoVendaA" value="<%out.print(peca.getPrecoVenda());%>" size="15" />
                     <br />
                     <input type="submit" value="Alterar" name="btAlterar" />
-                </form>
                 </form>
                 <%}%>
             </fieldset>

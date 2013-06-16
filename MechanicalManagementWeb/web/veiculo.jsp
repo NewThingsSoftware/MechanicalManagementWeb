@@ -31,8 +31,8 @@
                     <input type="text" name="modelo" id="modelo" value="" size="40" />
                     <br />
 
-                    <label for="dono">Dono</label>
-                    <select name="escolherCliente">
+                    <label for="escolherCliente">Dono</label>
+                    <select name="escolherCliente" id="escolherCliente">
                         <%for (Cliente cliente : new ClienteDAO().obterTodos()) {%>
                         <option value="<%out.print(cliente.getCodCliente());%>"> <%out.print(cliente.getNome());%> 
                         </option>
