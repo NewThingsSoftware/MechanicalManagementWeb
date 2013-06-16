@@ -30,8 +30,7 @@
                     <br />
                     <input type="submit" value="Gravar" name="btGravar" />
                 </form>
-                <% // Se for alteração 
-                    }%>
+                <%} else {%>
                 <form name="formAltCliente" action="AlterarClienteServlet" method="POST">
                     <%Cliente cliente = new ClienteDAO().obterPorCodigo(Integer.parseInt(request.getParameter("codCliente")));%>
                     <input type="hidden" name="codCliente" value="<%out.print(cliente.getCodCliente());%>150" />
@@ -46,8 +45,8 @@
                     <input type="text" name="rg" id="rgA" value="<%out.print(cliente.getRg());%>" size="13" />
                     <br />
                     <input type="submit" value="Alterar" name="btAlterar" />
-
                 </form>
+                <%}%>
             </fieldset>
         </div>
         <a href="index.jsp">Pagina Inicial</a>

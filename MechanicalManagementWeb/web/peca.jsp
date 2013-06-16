@@ -21,11 +21,12 @@
 
                 </form>
                 <% // Se for alteração 
-                    }%>
+                } else {%>
                 <form name="formAltPeca" action="AlterarPecaServlet" method="POST">
 
 
                 </form>
+                <%}%>
             </fieldset>
         </div>
         <a href="index.jsp">Pagina Inicial</a>
