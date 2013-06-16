@@ -19,12 +19,13 @@ public class VeiculoDAO {
         if ("sucesso".equals(conecta.getMsg())) {
             try {
                 if ("sucesso".equals(conecta.getMsg())) {
-                    String sql = "INSERT INTO APP.CLIENTES (PLACA, MARCA, MODELO, COD_CLIENTE_FK)"
+                    String sql = "INSERT INTO APP.VEICULO (PLACA, MARCA, MODELO, COD_CLIENTE_FK)"
                             + " VALUES ('" + veiculo.getPlaca() + "','" + veiculo.getMarca()
                             + "', '" + veiculo.getModelo() + "'"
-                            + "', '" + veiculo.getCodCliente() + "' )";
+                            + ", " + veiculo.getCodCliente() + " )";
+                   System.out.println(sql);
                     conecta.getStm().execute(sql);
-                    System.out.println(sql);
+                    
                 } else {
                     System.out.println("erro:" + conecta.getMsg());
                 }
