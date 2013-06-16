@@ -17,8 +17,16 @@
                 <% if (request.getParameter("codPeca") == null) {
                 %>
                 <form name="formCadPeca" action="CadastrarPecaServlet" method="POST">
-
-
+                    <label for="descricao">Descrição</label>
+                    <input type="text" name="nome" id="nome" value="" size="150" />
+                    <br />
+                    <label for="precoCompra">Preço de Compra</label>
+                    <input type="text" name="precoCompra" id="precoCompra" value="" size="15" />
+                    <br />
+                    <label for="precoVenda">Preço de Venda</label>
+                    <input type="text" name="precoVenda" id="precoVenda" value="" size="13" />
+                    <br />
+                    <input type="submit" value="Gravar" name="btGravar" />
                 </form>
                 <% // Se for alteração 
                 } else {%>

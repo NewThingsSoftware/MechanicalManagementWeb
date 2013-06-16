@@ -40,7 +40,9 @@ public class CadastrarPecaServlet extends HttpServlet {
             out.println("<title>Servlet CadastrarPecaServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CadastrarPecaServlet at " + request.getContextPath() + "</h1>");
+           
+            
+            
             out.println("</body>");
             out.println("</html>");
         } finally {            
