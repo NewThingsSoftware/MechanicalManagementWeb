@@ -13,10 +13,22 @@
     </head>
     <body>
         <div align="center">
-            <fieldset style="width: 40%"><legend>Cliente</legend>
+            <fieldset style="width: 50%"><legend>Mecanico</legend>
                 <% if (request.getParameter("codMecanico") == null) {
                 %>
                 <form name="formCadMecanico" action="CadastrarMecanicoServlet" method="POST">
+
+                    <label for="nome">Nome</label>
+                    <input type="text" name="nome" id="nome" value="" size="80" />
+                    <br />
+                    <label for="cpf">CPF</label>
+                    <input type="text" name="cpf" id="cpf" value="" size="15" />
+                 
+                    <label for="rg">RG</label>
+                    <input type="text" name="rg" id="rg" value="" size="13" />
+                    <br />
+
+                    <input type="submit" value="Gravar" name="btGravar" />
 
 
                 </form>
