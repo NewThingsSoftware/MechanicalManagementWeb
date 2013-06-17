@@ -32,7 +32,7 @@ public class CadastrarPecaServlet extends HttpServlet {
             PecaDAO pecaDAO = new PecaDAO();
             pecaDAO.incluirPeca(peca);
 
-            response.sendRedirect("visualizarCliente.jsp");
+            response.sendRedirect("visualizarPeca.jsp");
 
 
             out.println("</body>");

@@ -55,8 +55,6 @@
                 out.println("</table>");
             %>
         </div>
-
-
-
+        <a href="index.jsp">Pagina Inicial</a>
     </body>
 </html>
