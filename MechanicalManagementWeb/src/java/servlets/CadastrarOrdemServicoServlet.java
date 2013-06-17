@@ -8,7 +8,6 @@ import classes.OrdemServico;
 import daos.OrdemServicoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import javax.servlet.ServletException;
@@ -16,7 +15,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sun.beans.editors.IntEditor;
 
 /**
  *
@@ -55,13 +53,15 @@ public class CadastrarOrdemServicoServlet extends HttpServlet {
                 ordemServico.setCodMecanico(Integer.parseInt(request.getParameter("mecanico")));
                 OrdemServicoDAO ordemServicoDAO = new OrdemServicoDAO();
                 ordemServicoDAO.incluirOrdemServico(ordemServico);
-                
+
                 response.sendRedirect("visualizarOrdemServico.jsp");
-                
+
             } catch (ParseException ex) {
                 out.println("<h1>Data informada com formato errado</h1>");
                 out.println("<br />");
                 out.println("<a href=\"criaOrdemServico.jsp\">Voltar para o cadastro</a>");
+                out.println("</body>");
+                out.println("</html>");
             }
             out.println("</body>");
             out.println("</html>");

@@ -15,36 +15,28 @@ public class ClienteDAO {
         conecta = new Conecta();
     }
 
-    public void incluirCliente(Cliente cliente) {
+    public void incluirCliente(Cliente cliente) throws SQLException {
         if ("sucesso".equals(conecta.getMsg())) {
-            try {
-                if ("sucesso".equals(conecta.getMsg())) {
-                    String sql = "INSERT INTO APP.CLIENTES (NOME, CPF, RG)"
-                            + " VALUES ('" + cliente.getNome() + "','" + cliente.getCpf()
-                            + "', '" + cliente.getRg() + "' )";
-                    conecta.getStm().execute(sql);
-                } else {
-                    System.out.println("erro:" + conecta.getMsg());
-                }
-            } catch (SQLException sql) {
-                System.out.println(sql);
-            }
-        }
-    }
-
-    public void alterarCliente(Cliente cliente) {
-        try {
             if ("sucesso".equals(conecta.getMsg())) {
-                String sql = "UPDATE APP.CLIENTES SET NOME = '" + cliente.getNome() + "', "
-                        + " CPF = '" + cliente.getCpf() + "', RG = '" + cliente.getRg()
-                        + "' WHERE COD_CLIENTE = " + cliente.getCodCliente();
-                
+                String sql = "INSERT INTO APP.CLIENTES (NOME, CPF, RG)"
+                        + " VALUES ('" + cliente.getNome() + "','" + cliente.getCpf()
+                        + "', '" + cliente.getRg() + "' )";
                 conecta.getStm().execute(sql);
             } else {
                 System.out.println("erro:" + conecta.getMsg());
             }
-        } catch (SQLException sql) {
-            System.out.println(sql);
+        }
+    }
+
+    public void alterarCliente(Cliente cliente) throws SQLException {
+        if ("sucesso".equals(conecta.getMsg())) {
+            String sql = "UPDATE APP.CLIENTES SET NOME = '" + cliente.getNome() + "', "
+                    + " CPF = '" + cliente.getCpf() + "', RG = '" + cliente.getRg()
+                    + "' WHERE COD_CLIENTE = " + cliente.getCodCliente();
+
+            conecta.getStm().execute(sql);
+        } else {
+            System.out.println("erro:" + conecta.getMsg());
         }
     }
 
