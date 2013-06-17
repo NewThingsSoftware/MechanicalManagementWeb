@@ -4,6 +4,7 @@ import classes.Mecanico;
 import daos.MecanicoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +21,8 @@ public class CadastrarMecanicoServlet extends HttpServlet {
         try {
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CadastrarMecanicoServlet</title>");            
+            out.println("<title>Cadastrar Mecanico</title>");
+            out.println("<link rel=\"stylesheet\" href=\"Estilo/estilo.css\" type=\"text/css\" media=\"screen\">");
             out.println("</head>");
             out.println("<body>");
 
@@ -28,20 +30,29 @@ public class CadastrarMecanicoServlet extends HttpServlet {
             mecanico.setNome(request.getParameter("nome"));
             mecanico.setCpf(request.getParameter("cpf"));
             mecanico.setRg(request.getParameter("rg"));
-            
+
             MecanicoDAO mecanicoDAO = new MecanicoDAO();
-            mecanicoDAO.incluirMecanico(mecanico);
-            
-            response.sendRedirect("visualizarMecanico.jsp");
-            
+            try {
+                mecanicoDAO.incluirMecanico(mecanico);
+                response.sendRedirect("visualizarMecanico.jsp");
+            } catch (SQLException ex) {
+                out.println("<div align=\"center\">");
+                out.println("<h1>CPF já existente no sistema!</h1>");
+                out.println("<fieldset style=\"width: 40%\"><legend>Links</legend>");
+                out.println("<a href=\"mecanico.jsp\">Voltar</a>");
+                out.println("</fieldset>");
+                out.println("</div>");
+                out.println("</body>");
+                out.println("</html>");
+            }
             out.println("</body>");
             out.println("</html>");
-        } finally {            
+        } finally {
             out.close();
         }
     }
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP
      * <code>GET</code> method.
