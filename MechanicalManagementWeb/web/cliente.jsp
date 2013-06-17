@@ -24,13 +24,13 @@
                       onsubmit="return validaForm(this)">
                     <br>
                     <label for="nome">Nome Completo:</label>
-                    <input type="text" name="nome" id="nome" value="" size="60"  />
+                    <input type="text" name="nome" id="nome" value="" size="60" maxlength="150" />
                     <br><br>
                     <label for="cpf">CPF:</label>
-                    <input type="text" name="cpf" id="cpf" value="" size="20" />
+                    <input type="text" name="cpf" id="cpf" value="" size="20" maxlength="14" />
                     &nbsp&nbsp
                     <label for="rg">RG:</label>
-                    <input type="text" name="rg" id="rg" value="" size="20" />
+                    <input type="text" name="rg" id="rg" value="" size="20" maxlength="13" />
                     <br><br><br>
                     <input type="submit" value="Gravar!" name="btGravar" />
                 </form>
@@ -41,15 +41,15 @@
                     <input type="hidden" name="codCliente" value="<%out.print(cliente.getCodCliente());%>" />
                     <br />
                     <label for="nomeA">Nome Completo: </label>
-                    <input type="text" name="nome" id="nomeA" value="<%out.print(cliente.getNome());%>" size="60" />
+                    <input type="text" name="nome" id="nomeA" value="<%out.print(cliente.getNome());%>" size="60" maxlength="150"/>
                     <br /><br>
                     <label for="cpfA">CPF:</label>
-                    <input type="text" name="cpf" id="cpfA" value="<%out.print(cliente.getCpf());%>" size="20" />
+                    <input type="text" name="cpf" id="cpfA" value="<%out.print(cliente.getCpf());%>" size="20" maxlength="14" />
                     &nbsp&nbsp
                     <label for="rgA">RG:</label>
-                    <input type="text" name="rg" id="rgA" value="<%out.print(cliente.getRg());%>" size="20" />
+                    <input type="text" name="rg" id="rgA" value="<%out.print(cliente.getRg());%>" size="20" maxlength="13" />
                     <br><br>
-                    <input type="submit" value="Alterar" name="btAlterar" />
+                    <input type="submit" value="Alterar!" name="btAlterar" />
                 </form>
                 <%}%>
             </fieldset>

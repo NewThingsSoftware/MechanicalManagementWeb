@@ -22,7 +22,6 @@
             <form name="meuForm" action="visualizarCliente.jsp" method="POST">
                 <label>Nome:</label>
                 <input type="text" name="filtro" id="filtro" value="" size="45"/>
-                
                 <input type="submit" value="Buscar!" name="btFiltro" />
                 <br><br>
             </form>
@@ -38,7 +37,7 @@
                 out.println("<tr>");
                 out.println("</thead>");
                 List<Cliente> clientes = new ClienteDAO().obterTodos();
-                if (request.getParameter("rFiltro") != null) {
+                if (request.getParameter("filtro") != null) {
                     clientes = new ClienteDAO().obterPorNome(request.getParameter("filtro"));
                 }
                 for (Cliente cliente : clientes) {
@@ -54,7 +53,10 @@
                 out.println("</tr>");
                 out.println("</table>");
             %>
+             <br><br>
+            <fieldset style="width: 40%"><legend>Links</legend>
+                <a href="index.jsp">Pagina Inicial</a>
+            </fieldset>
         </div>
-        <a href="index.jsp">Pagina Inicial</a>
     </body>
 </html>

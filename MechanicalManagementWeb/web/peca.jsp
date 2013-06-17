@@ -23,17 +23,19 @@
                 <form name="formCadPeca" action="CadastrarPecaServlet" method="POST"
                       onsubmit="return validaForm(this)">
                     <label for="descricao">Descrição: </label>
-                    <input type="text" name="descricao" id="descricao" value="" size="60" />
+                    <input type="text" name="descricao" id="descricao" value="" size="60" maxlength="150" />
                     <br><br>
                     <label for="precoCompra">Preço de Compra: R$ </label>
-                    <input type="text" name="precoCompra" id="precoCompra" value="" size="10" />
+                    <input type="text" name="precoCompra" id="precoCompra" value="" size="10" maxlength="52" 
+                           onblur="validaNumero(this)"/>
                     &nbsp&nbsp
                     <label for="precoVenda">Preço de Venda: R$ </label>
-                    <input type="text" name="precoVenda" id="precoVenda" value="" size="10" />
+                    <input type="text" name="precoVenda" id="precoVenda" value="" size="10" maxlength="52"
+                           onblur="validaNumero(this)"/>
                     <br><br>
-                    <input type="submit" value="Gravar" name="btGravar" />
+                    <input type="submit" value="Gravar!" name="btGravar" />
                 </form>
-                <% // Se for alteração 
+                <% 
                 } else {%>
                 <form name="formAltPeca" action="AlterarPecaServlet" method="POST"
                       onsubmit="return validaForm(this)">
@@ -41,19 +43,20 @@
                     <input type="hidden" name="codPeca" value="<%out.print(peca.getCodPeca());%>" />
                     <br />
                     <label for="descricaoA">Descrição da Peça: </label>
-                    <input type="text" name="descricao" id="descricaoA" value="<%out.print(peca.getDescricao());%>" size="60" />
+                    <input type="text" name="descricao" id="descricaoA" value="<%out.print(peca.getDescricao());%>" size="60" maxlength="150" />
                     <br><br>
                     <label for="precoCompraA">Preço de Compra: R$ </label>
-                    <input type="text" name="precoCompra" id="precoCompraA" value="<%out.print(peca.getPrecoCompra());%>" size="15" />
+                    <input type="text" name="precoCompra" id="precoCompraA" value="<%out.print(peca.getPrecoCompra());%>" size="15" maxlength="52" 
+                           onblur="validaNumero(this)"/>
                     &nbsp&nbsp
                     <label for="precoVendaA">Preço de Venda: R$ </label>
-                    <input type="text" name="precoVenda" id="precoVendaA" value="<%out.print(peca.getPrecoVenda());%>" size="15" />
+                    <input type="text" name="precoVenda" id="precoVendaA" value="<%out.print(peca.getPrecoVenda());%>" size="15" maxlength="52"
+                           onblur="validaNumero(this)"/>
                     <br /><br>
-                    <input type="submit" value="Alterar" name="btAlterar" />
+                    <input type="submit" value="Alterar!" name="btAlterar" />
                 </form>
                 <%}%>
             </fieldset>
-
             <br><br>
             <fieldset style="width: 40%"><legend>Links</legend>
                 <a href="index.jsp">Pagina Inicial</a>

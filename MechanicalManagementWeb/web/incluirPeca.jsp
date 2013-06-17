@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Incluir Peça</title>
+        <title>Peça</title>
         <script type="text/javascript" src="Script/script.js"></script>
         <link rel="stylesheet" href="Estilo/estilo.css" type="text/css" media="screen">
     </head>
@@ -28,10 +28,11 @@
                             <%out.print(peca.getDescricao());%></option>
                             <%}%>
                     </select>
-                    <br />
+                    &nbsp&nbsp
                     <label for="quantidade">Quantidade</label>
-                    <input type="text" name="quantidade" id="quantidade" value="" size="6" />
-                    <input type="submit" value="Incluir" name="btIncluirPeca" />
+                    <input type="text" name="quantidade" id="quantidade" value="" size="6" maxlength="10" />
+                    <br /><br />
+                    <input type="submit" value="Incluir Peça!" name="btIncluirPeca" />
                 </form>
             </fieldset>
         </div>

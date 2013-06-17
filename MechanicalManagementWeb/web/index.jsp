@@ -27,8 +27,8 @@
         <br><br><br>
         <fieldset style="width: 30%"><legend>Consultas</legend>
         <a href="visualizarCliente.jsp">Visualizar Clientes</a><br>
-        <a href="visualizarMecanico.jsp">Visualizar Mecanicos</a><br>
         <a href="visualizarPeca.jsp">Visualizar Peças</a><br>
+        <a href="visualizarMecanico.jsp">Visualizar Mecanicos</a><br>
         <a href="visualizarVeiculo.jsp">Visualizar Veículos</a><br>
         <a href="visualizarOrdemServico.jsp">Visualizar Ordens de Serviço</a><br>
         </fieldset>

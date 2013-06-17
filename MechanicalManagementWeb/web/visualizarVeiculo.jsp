@@ -14,7 +14,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Veiculos</title>
         <link rel="stylesheet" href="Estilo/estilo.css" type="text/css" media="screen">
     </head>
     <body>
@@ -67,8 +67,10 @@
                 out.println("</tr>");
                 out.println("</table>");
             %>
+            <br><br>
+            <fieldset style="width: 40%"><legend>Links</legend>
+                <a href="index.jsp">Pagina Inicial</a>
+            </fieldset>
         </div>
-        <a href="index.jsp">Pagina Inicial</a>
-
     </body>
 </html>

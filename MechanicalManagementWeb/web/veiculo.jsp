@@ -33,19 +33,19 @@
                     </select>
                     &nbsp&nbsp
                     <label for="placa">Placa: </label>
-                    <input type="text" name="placa" id="placa" value="" size="10" />
+                    <input type="text" name="placa" id="placa" value="" size="10" maxlength="8"/>
                     <br><br>
                     <label for="marca">Marca</label>
-                    <input type="text" name="marca" id="marca" value="" size="20" />
+                    <input type="text" name="marca" id="marca" value="" size="20" maxlength="150" />
                     &nbsp&nbsp
                     <label for="modelo">Modelo</label>
-                    <input type="text" name="modelo" id="modelo" value="" size="20" />
+                    <input type="text" name="modelo" id="modelo" value="" size="20" maxlength="150" />
                     <br />
                     <br>
                     <input type="submit" value="Gravar" name="btGravar" />
 
                 </form>
-                <% // Se for alteração 
+                <% 
                 } else {%>
                 <form name="formAltVeiculo" action="AlterarVeiculoServlet" method="POST"
                       onsubmit="return validaForm(this)">
@@ -55,13 +55,13 @@
                     <br />
 
                     <label for="placaA">Placa</label>
-                    <input type="text" name="placa" id="placaA" value="<%out.print(veiculo.getPlaca());%>" size="40" />
+                    <input type="text" name="placa" id="placaA" value="<%out.print(veiculo.getPlaca());%>" size="10" maxlength="8" />
                     <br />
                     <label for="marcaA">Marca</label>
-                    <input type="text" name="marca" id="marcaA" value="<%out.print(veiculo.getMarca());%>" size="40" />
+                    <input type="text" name="marca" id="marcaA" value="<%out.print(veiculo.getMarca());%>" size="20" maxlength="150" />
 
                     <label for="modelo">Modelo</label>
-                    <input type="text" name="modelo" id="modeloA" value="<% out.print(veiculo.getModelo());%>" size="40" />
+                    <input type="text" name="modelo" id="modeloA" value="<% out.print(veiculo.getModelo());%>" size="20" maxlength="150" />
                     <br />
 
                     <label for="escolherCliente">Dono/Cliente</label>
@@ -76,7 +76,7 @@
                             <% }%>
                     </select>
 
-                    <input type="submit" value="Gravar" name="btGravar" />
+                    <input type="submit" value="Alterar!" name="btAlterar" />
 
                 </form>
                 <%}%>
@@ -85,6 +85,5 @@
                 <a href="index.jsp">Pagina Inicial</a>
             </fieldset>
         </div>
-
     </body>
 </html>

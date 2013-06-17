@@ -37,7 +37,7 @@
                 out.println("</tr>");
                 out.println("</thead>");
                 List<Peca> pecas = new PecaDAO().obterTodos();
-                if (request.getParameter("rFiltro") != null) {
+                if (request.getParameter("filtro") != null) {
                     pecas = new PecaDAO().obterPorDescricao(request.getParameter("filtro"));
                 }
                 for (Peca peca : pecas) {
@@ -54,7 +54,11 @@
 
                 out.println("</table>");
             %>
+            <br><br>
+            <fieldset style="width: 40%"><legend>Links</legend>
+                <a href="index.jsp">Pagina Inicial</a>
+            </fieldset>
         </div>
-        <a href="index.jsp">Pagina Inicial</a>
+        
     </body>
 </html>

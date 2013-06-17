@@ -17,7 +17,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Finalizar Ordem de Serviço</title>
+        <title>Ordem de Serviço</title>
         <script type="text/javascript" src="Script/script.js"></script>
         <link rel="stylesheet" href="Estilo/estilo.css" type="text/css" media="screen">
     </head>
@@ -42,7 +42,7 @@
                     <input type="text" name="mecanico" id="mecanico" value="<%out.print(new MecanicoDAO().obterPorCodigo(ordemServico.getCodMecanico()).getNome());%>" readonly="readonly" size="8" />
                     <br />
                     <label for="valorMaoObra">Valor do Serviço</label>
-                    <input type="text" name="valorMaoObra" id="valorMaoObra" value="<%out.print(ordemServico.getValorMaoObra());%>" size="10"
+                    <input type="text" name="valorMaoObra" id="valorMaoObra" value="<%out.print(ordemServico.getValorMaoObra());%>" size="10" maxlength="52"
                            onblur="document.location='IncluirValorMaoObraServlet?codOrdemServico='+
                            <%out.print(ordemServico.getCodOrdemServico());%>+'&valorMaoObra='+this.value"
                            onchange="validaNumero(this)" />
@@ -72,17 +72,21 @@
 
                     %>
                     <br />
-                    <input type="button" value="Incluir Peca" name="btIncluirPeca" onclick="document.location='incluirPeca.jsp?cod=<%out.print(ordemServico.getCodOrdemServico());%>'"/>
+                    <input type="button" value="Incluir Peca!" name="btIncluirPeca" onclick="document.location='incluirPeca.jsp?cod=<%out.print(ordemServico.getCodOrdemServico());%>'"/>
                     <br />
                     <br />
                     <label for="valor">Valor Total</label>
-                    <input type="text" name="valor" id="valor" value="<%out.print((new PecaUsadaDAO().totalPagar(ordemServico.getCodOrdemServico())+ordemServico.getValorMaoObra()));%>" size="10" readonly="readonly" />
+                    <input type="text" name="valor" id="valor" value="<%out.print((new PecaUsadaDAO().totalPagar(ordemServico.getCodOrdemServico()) + ordemServico.getValorMaoObra()));%>" size="10" readonly="readonly" />
                     <br />
                     <br />
-                    <input type="submit" value="Finalizar" name="btFinalizar" />
+                    <input type="submit" value="Finalizar OS!" name="btFinalizar" />
                 </form>
             </fieldset>
+            <br><br>
+            <fieldset style="width: 40%"><legend>Links</legend>
+                <a href="index.jsp">Pagina Inicial</a>
+            </fieldset>
         </div>
-        <a href="index.jsp">Pagina Inicial</a>
+
     </body>
 </html>

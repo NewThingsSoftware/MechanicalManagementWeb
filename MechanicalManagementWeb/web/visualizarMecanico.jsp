@@ -39,10 +39,8 @@
                 out.println("</tr>");
                 out.println("</thead>");
                 List<Mecanico> mecanicos = new MecanicoDAO().obterTodos();
-                if (request.getParameter("rFiltro") != null) {
-                    if (request.getParameter("rFiltro").equals("porNome")) {
+                if (request.getParameter("filtro") != null) {
                         mecanicos = new MecanicoDAO().obterPorNome(request.getParameter("filtro"));
-                    }
                 }
                 for (Mecanico mecanico : mecanicos) {
                     out.println("<tr onmouseover=\"this.style.background='#CDC673'\" onmouseout=\"this.style.background=''\">");

@@ -64,10 +64,14 @@
                                 }%>
                     </select>
                     <br />
-                    <input type="submit" value="Criar OS" name="btCriarOS" />
+                    <input type="submit" value="Criar OS!" name="btCriarOS" />
                 </form>
             </fieldset>
+                    <br><br>
+            <fieldset style="width: 40%"><legend>Links</legend>
+                <a href="index.jsp">Pagina Inicial</a>
+            </fieldset>
         </div>
-        <a href="index.jsp">Pagina Inicial</a>
+       
     </body>
 </html>
