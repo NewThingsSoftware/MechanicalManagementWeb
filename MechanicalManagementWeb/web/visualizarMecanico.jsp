@@ -16,15 +16,15 @@
         <link rel="stylesheet" href="Estilo/estilo.css" type="text/css" media="screen">
     </head>
     <body>
-      <div align="center">
+        <div align="center">
             <center><h1>Mecânicos</h1></center>
             <br /><br />
+            
             <form name="meuForm" action="visualizarMecanico.jsp" method="POST">
-                <input type="text" name="filtro" id="filtro" value="" size="100"/>
+                <label>Nome: </label>
+                <input type="text" name="filtro" id="filtro" value="" size="45"/>
                 <input type="submit" value="Filtrar" name="btFiltro" />
                 <br />
-                <input type="radio" name="rFiltro" value="porNome" checked="checked" /> Por nome
-
                 <br><br>
             </form>
             <%
@@ -36,7 +36,7 @@
                 out.println("<th>RG</th>");
                 out.println("<th>Alterar</th>");
 
-                out.println("<tr>");
+                out.println("</tr>");
                 out.println("</thead>");
                 List<Mecanico> mecanicos = new MecanicoDAO().obterTodos();
                 if (request.getParameter("rFiltro") != null) {
@@ -45,7 +45,7 @@
                     }
                 }
                 for (Mecanico mecanico : mecanicos) {
-                    out.println("<tr onmouseover=\"this.style.background='pink'\" onmouseout=\"this.style.background=''\">");
+                    out.println("<tr onmouseover=\"this.style.background='#CDC673'\" onmouseout=\"this.style.background=''\">");
                     out.println("<td>" + mecanico.getNome() + "</td>");
                     out.println("<td>" + mecanico.getCpf() + "</td>");
                     out.println("<td>" + mecanico.getRg() + "</td>");
@@ -53,11 +53,16 @@
                     out.println("<input type=\"hidden\" name=\"codMecanico\" id=\"codMecanico\" value=\"" + mecanico.getCodMecanico() + "\"/>");
                     out.println("<input type=\"submit\" value=\"Alterar\" name=\"btAlterar\" id=\"btAlterar\" />");
                     out.println("</form></td>");
+                    out.println("</tr>");
                 }
-                out.println("</tr>");
+
                 out.println("</table>");
             %>
+            <br><br>
+            <fieldset style="width: 40%"><legend>Links</legend>
+                <a href="index.jsp">Pagina Inicial</a>
+            </fieldset>
         </div>
-        <a href="index.jsp">Pagina Inicial</a>
+
     </body>
 </html>

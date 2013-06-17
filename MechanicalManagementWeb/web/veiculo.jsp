@@ -23,16 +23,7 @@
                 %>
                 <form name="formCadVeiculo" action="CadastrarVeiculoServlet" method="POST"
                       onsubmit="return validaForm(this)">
-                    <label for="placa">Placa</label>
-                    <input type="text" name="placa" id="placa" value="" size="40" />
-                    <br />
-                    <label for="marca">Marca</label>
-                    <input type="text" name="marca" id="marca" value="" size="40" />
-
-                    <label for="modelo">Modelo</label>
-                    <input type="text" name="modelo" id="modelo" value="" size="40" />
-                    <br />
-
+                    <br>
                     <label for="escolherCliente">Dono</label>
                     <select name="escolherCliente" id="escolherCliente">
                         <%for (Cliente cliente : new ClienteDAO().obterTodos()) {%>
@@ -40,7 +31,17 @@
                         </option>
                         <% }%>
                     </select>
-
+                    &nbsp&nbsp
+                    <label for="placa">Placa: </label>
+                    <input type="text" name="placa" id="placa" value="" size="10" />
+                    <br><br>
+                    <label for="marca">Marca</label>
+                    <input type="text" name="marca" id="marca" value="" size="20" />
+                    &nbsp&nbsp
+                    <label for="modelo">Modelo</label>
+                    <input type="text" name="modelo" id="modelo" value="" size="20" />
+                    <br />
+                    <br>
                     <input type="submit" value="Gravar" name="btGravar" />
 
                 </form>
@@ -80,7 +81,10 @@
                 </form>
                 <%}%>
             </fieldset>
+            <fieldset style="width: 40%"><legend>Links</legend>
+                <a href="index.jsp">Pagina Inicial</a>
+            </fieldset>
         </div>
-        <a href="index.jsp">Pagina Inicial</a>
+
     </body>
 </html>

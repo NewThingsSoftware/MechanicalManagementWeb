@@ -1,35 +1,47 @@
 body{
     font-family: verdana;
     font-size: 12px;
+
+    background-image: url(mecanico.png);
+}
+div{
+    margin-top: 150px;
 }
 
 table thead{
-    background: lightpink;
+    background: #698B22;
     font-family: verdana;
     font-size: 12px;
-
-    border-color: darkgrey;
+    border-color: #698B22;
+    color: white;
 }
-table tbody tr:nth-child(2n+1) { 
-    background:darksalmon;
-   
-    font-size: 12px;
-}
-
-
-label, a, legend, input{
+    label, a, legend, input{
     font-family: verdana;
     font-size: 12px;
 }
 h1{
     text-align: center;
-    color: palevioletred;
+    color: #698B22;
     font-family: Verdana;
-    font-size: 20px;
+    font-size: 15px;
 }
 
-b, a{
+a:link{
     font-family: verdana;
-    color: palevioletred;
+    color: #6B8E23;
     font-size: 12px;
 }
+
+a:visited{
+    font-family: verdana;
+    color: #663333;
+    font-size: 12px;
+}
+
+legend{
+    font-family: verdana;
+    color: #8B4513;
+    font-size: 12px;
+}
+
+
