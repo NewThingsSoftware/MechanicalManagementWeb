@@ -15,9 +15,8 @@ public class MecanicoDAO {
         conecta = new Conecta();
     }
 
-    public void incluirMecanico(Mecanico mecanico) {
+    public void incluirMecanico(Mecanico mecanico) throws SQLException{
         if ("sucesso".equals(conecta.getMsg())) {
-            try {
                 if ("sucesso".equals(conecta.getMsg())) {
                     String sql = "INSERT INTO APP.MECANICO (NOME, CPF, RG)"
                             + " VALUES ('" + mecanico.getNome() + "','" + mecanico.getCpf()
@@ -26,14 +25,10 @@ public class MecanicoDAO {
                 } else {
                     System.out.println("erro:" + conecta.getMsg());
                 }
-            } catch (SQLException sql) {
-                System.out.println(sql);
-            }
         }
     }
 
-    public void alterarMecanico(Mecanico mecanico) {
-        try {
+    public void alterarMecanico(Mecanico mecanico) throws SQLException{
             if ("sucesso".equals(conecta.getMsg())) {
                 String sql = "UPDATE APP.MECANICO SET NOME = '" + mecanico.getNome() + "', "
                         + " CPF = '" + mecanico.getCpf() + "', RG = '" + mecanico.getRg()
@@ -43,9 +38,6 @@ public class MecanicoDAO {
             } else {
                 System.out.println("erro:" + conecta.getMsg());
             }
-        } catch (SQLException sql) {
-            System.out.println(sql);
-        }
     }
 
     public List<Mecanico> obterTodos() {
