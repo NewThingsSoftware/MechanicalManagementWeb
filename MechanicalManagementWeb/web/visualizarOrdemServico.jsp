@@ -26,21 +26,23 @@
     <body>
         <div align="center">
             <center><h1>Ordens de Serviço</h1></center>
-            <br /><br />
+            <br />
             <form name="meuForm" action="visualizarOrdemServico.jsp" method="POST">
+
+                <input type="radio" name="rFiltro" value="cliente" checked="checked" /> Pelo nome do cliente
+                &nbsp
+                <input type="radio" name="rFiltro" value="placa"/> Pela placa do veiculo
+                &nbsp
+                <input type="radio" name="rFiltro" value="mecanico"/> Pelo nome do mecânico
+                &nbsp
+                <input type="radio" name="rFiltro" value="descricao"/>Pela descrição do problema
+                <br>
+                <br>
                 <input type="text" name="filtro" id="filtro" value="" size="100"/>
-                <input type="submit" value="Filtrar" name="btFiltro" />
-                <br />
-                <input type="radio" name="rFiltro" value="cliente" checked="checked" /> Buscar pelo nome do cliente
-                <br />
-                <input type="radio" name="rFiltro" value="placa"/> Buscar pela placa do veiculo
-                <br />
-                <input type="radio" name="rFiltro" value="mecanico"/> Buscar pelo nome do mecânico
-                <br />
-                <input type="radio" name="rFiltro" value="descricao"/>Buscar pela descrição do problema
+                <input type="submit" value="Buscar!" name="btFiltro" />
                 <br><br>
             </form>
-            <%                
+            <%
                 out.println("<table border=2px cellpadding=5px cellspacing=0>");
                 out.println("<thead>");
                 out.println("<tr>");
@@ -73,14 +75,14 @@
                     Mecanico mecanico = new MecanicoDAO().obterPorCodigo(ordemServico.getCodMecanico());
                     Veiculo veiculo = new VeiculoDAO().obterPorCodigo(ordemServico.getCodVeiculo());
                     Cliente cliente = new ClienteDAO().obterPorCodigo(veiculo.getCodCliente());
-                    out.println("<tr onmouseover=\"this.style.background='green'\" onmouseout=\"this.style.background=''\">");
+                    out.println("<tr onmouseover=\"this.style.background='#CDC673'\" onmouseout=\"this.style.background=''\">");
                     out.println("<td>" + ordemServico.getCodOrdemServico() + "</td>");
                     out.println("<td>" + cliente.getNome() + "</td>");
                     out.println("<td>" + veiculo.getPlaca() + "</td>");
                     out.println("<td>" + mecanico.getNome() + "</td>");
                     out.println("<td>" + ordemServico.getData() + "</td>");
                     out.println("<td>" + ordemServico.getDescricao() + "</td>");
-                    out.println("<td>" + (new PecaUsadaDAO().totalPagar(ordemServico.getCodOrdemServico())+ordemServico.getValorMaoObra()) + "</td>");
+                    out.println("<td>" + (new PecaUsadaDAO().totalPagar(ordemServico.getCodOrdemServico()) + ordemServico.getValorMaoObra()) + "</td>");
                     if (ordemServico.getValorMaoObra() <= 0) {
                         out.println("<td><form name=\"finalizar\" action=\"finalizarOrdemServico.jsp\" method=\"POST\">");
                         out.println("<input type=\"hidden\" name=\"codOrdemServico\" id=\"codOrdemServico\" value=\"" + ordemServico.getCodOrdemServico() + "\"/>");
@@ -94,7 +96,7 @@
                 out.println("</table>");
             %>
             <br><br>
-            <fieldset style="width: 40%"><legend>Links</legend>
+            <fieldset style="width: 53%"><legend>Links</legend>
                 <a href="index.jsp">Pagina Inicial</a>
             </fieldset>
         </div>

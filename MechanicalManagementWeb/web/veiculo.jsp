@@ -18,34 +18,34 @@
     </head>
     <body>
         <div align="center">
-            <fieldset style="width: 60%"><legend>Veiculo</legend>
+            <fieldset style="width: 40%"><legend>Dados do Veículo</legend>
                 <% if (request.getParameter("codVeiculo") == null) {
                 %>
                 <form name="formCadVeiculo" action="CadastrarVeiculoServlet" method="POST"
                       onsubmit="return validaForm(this)">
                     <br>
-                    <label for="escolherCliente">Dono</label>
+                    <label for="escolherCliente">Dono/Cliente: </label>
                     <select name="escolherCliente" id="escolherCliente">
                         <%for (Cliente cliente : new ClienteDAO().obterTodos()) {%>
                         <option value="<%out.print(cliente.getCodCliente());%>"> <%out.print(cliente.getNome());%> 
                         </option>
                         <% }%>
                     </select>
-                    &nbsp&nbsp
+                    &nbsp&nbsp&nbsp&nbsp    
                     <label for="placa">Placa: </label>
                     <input type="text" name="placa" id="placa" value="" size="10" maxlength="8"/>
                     <br><br>
-                    <label for="marca">Marca</label>
-                    <input type="text" name="marca" id="marca" value="" size="20" maxlength="150" />
-                    &nbsp&nbsp
-                    <label for="modelo">Modelo</label>
+                    <label for="marca">Marca: </label>
+                    <input type="text" name="marca" id="marca" value="" size="15" maxlength="150" />
+                    &nbsp&nbsp&nbsp
+                    <label for="modelo">Modelo: </label>
                     <input type="text" name="modelo" id="modelo" value="" size="20" maxlength="150" />
                     <br />
                     <br>
-                    <input type="submit" value="Gravar" name="btGravar" />
+                    <input type="submit" value="Gravar!" name="btGravar" />
 
                 </form>
-                <% 
+                <%
                 } else {%>
                 <form name="formAltVeiculo" action="AlterarVeiculoServlet" method="POST"
                       onsubmit="return validaForm(this)">
@@ -54,17 +54,7 @@
                     <input type="hidden" name="codVeiculo" value="<%out.print(veiculo.getCodVeiculo());%>" />
                     <br />
 
-                    <label for="placaA">Placa</label>
-                    <input type="text" name="placa" id="placaA" value="<%out.print(veiculo.getPlaca());%>" size="10" maxlength="8" />
-                    <br />
-                    <label for="marcaA">Marca</label>
-                    <input type="text" name="marca" id="marcaA" value="<%out.print(veiculo.getMarca());%>" size="20" maxlength="150" />
-
-                    <label for="modelo">Modelo</label>
-                    <input type="text" name="modelo" id="modeloA" value="<% out.print(veiculo.getModelo());%>" size="20" maxlength="150" />
-                    <br />
-
-                    <label for="escolherCliente">Dono/Cliente</label>
+                    <label>Dono/Cliente: </label>
                     <select name="escolherCliente" id="escolherCliente">
                         <%for (Cliente cliente : new ClienteDAO().obterTodos()) {%>
                         <option value="<%out.print(cliente.getCodCliente());%>" 
@@ -75,12 +65,24 @@
                             <%out.print(cliente.getNome());%></option>
                             <% }%>
                     </select>
+                    &nbsp&nbsp&nbsp&nbsp 
+                    <label for="placaA">Placa: </label>
+                    <input type="text" name="placa" id="placaA" value="<%out.print(veiculo.getPlaca());%>" size="10" maxlength="8" />
+                    <br /><br />
+                    <label for="marcaA">Marca: </label>
+                    <input type="text" name="marca" id="marcaA" value="<%out.print(veiculo.getMarca());%>" size="15" maxlength="150" />
+                    &nbsp&nbsp&nbsp&nbsp 
+                    <label for="modelo">Modelo: </label>
+                    <input type="text" name="modelo" id="modeloA" value="<% out.print(veiculo.getModelo());%>" size="20" maxlength="150" />
 
+                    <br>
+                    <br>
                     <input type="submit" value="Alterar!" name="btAlterar" />
 
                 </form>
                 <%}%>
             </fieldset>
+            <br><br>
             <fieldset style="width: 40%"><legend>Links</legend>
                 <a href="index.jsp">Pagina Inicial</a>
             </fieldset>

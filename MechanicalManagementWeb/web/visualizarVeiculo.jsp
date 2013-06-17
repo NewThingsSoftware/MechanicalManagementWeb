@@ -1,7 +1,7 @@
 <%-- 
     Document   : visualizarVeiculo
     Created on : 15/06/2013, 18:04:35
-    Author     : Bruno
+    Author     : Bruno/Marihelly
 --%>
 
 <%@page import="classes.Cliente"%>
@@ -20,16 +20,17 @@
     <body>
         <div align="center">
             <center><h1>Veículos</h1></center>
-            <br /><br />
+            <br />
             <form name="meuForm" action="visualizarVeiculo.jsp" method="POST">
-                <input type="text" name="filtro" id="filtro" value="" size="100"/>
-                <input type="submit" value="Filtrar" name="btFiltro" />
-                <br />
-                <input type="radio" name="rFiltro" value="porCliente" checked="checked" /> Por Cliente
-                <br />
-                <input type="radio" name="rFiltro" value="porPlaca"/> Por Placa
-                <br />
 
+
+                <input type="radio" name="rFiltro" value="porCliente" checked="checked" /> <label>Por Cliente</label>
+                &nbsp&nbsp
+                <input type="radio" name="rFiltro" value="porPlaca"/> <label>Por Placa</label>
+                <br><br>
+                <input type="text" name="filtro" id="filtro" value="" size="55"/>
+                <input type="submit" value="Buscar!" name="btFiltro" />
+                <br />
                 <br><br>
             </form>
             <%
@@ -54,7 +55,7 @@
                 }
                 for (Veiculo veiculo : veiculos) {
                     Cliente cliente = new ClienteDAO().obterPorCodigo(veiculo.getCodCliente());
-                    out.println("<tr onmouseover=\"this.style.background='green'\" onmouseout=\"this.style.background=''\">");
+                    out.println("<tr onmouseover=\"this.style.background='#CDC673'\" onmouseout=\"this.style.background=''\">");
                     out.println("<td>" + veiculo.getPlaca() + "</td>");
                     out.println("<td>" + veiculo.getModelo() + "</td>");
                     out.println("<td>" + veiculo.getMarca() + "</td>");

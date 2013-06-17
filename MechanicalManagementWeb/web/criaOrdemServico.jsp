@@ -21,18 +21,15 @@
     </head>
     <body>
         <div align="center">
-            <fieldset style="width: 40%"><legend>Cliente</legend>
+            <fieldset style="width: 50%"><legend>Abertura da OS: </legend>
                 <form name="formCadOrdemServico" action="CadastrarOrdemServicoServlet" method="POST"
                       onsubmit="return validaForm(this)">
-                    <label for="data">Data</label>
+                    <br>
+                    <label for="data">Data: </label>
                     <%String data = new SimpleDateFormat("dd/MM/yyyy").format(new Date(System.currentTimeMillis())).toString();%>
                     <input type="text" name="data" id="data" value="<%out.print(data);%>" size="10" readonly="readonly" />
-                    <br />
-                    <label for="descricao">Descrição do Problema</label>
-                    <br />
-                    <textarea name="descricao" id="descricao"  maxlength="150" rows="5" cols="30"></textarea>
-                    <br />
-                    <label for="veiculo">Veiculo (Placa)</label>
+                    &nbsp&nbsp                    
+                    <label for="veiculo">Veiculo (Placa): </label>
                     <select name="veiculo" id="veiculo">
                         <% int i = 0;
                             for (Veiculo veiculo : new VeiculoDAO().obterTodos()) {
@@ -47,8 +44,8 @@
                                     i++;
                                 }%>
                     </select>
-                    <br />
-                    <label for="mecanico">Mecânico</label>
+                    &nbsp&nbsp
+                    <label for="mecanico">Mecânico: </label>
                     <select name="mecanico" id="mecanico">
                         <% i = 0;
                             for (Mecanico mecanico : new MecanicoDAO().obterTodos()) {
@@ -63,12 +60,19 @@
                                     i++;
                                 }%>
                     </select>
+                    <br>
+                    <br>
+                    <label for="descricao">Descrição do problema: </label>
+                    <br />
+                    <textarea name="descricao" id="descricao"  maxlength="150" rows="3" cols="50"></textarea>
+                    <br />
+                    
                     <br />
                     <input type="submit" value="Criar OS!" name="btCriarOS" />
                 </form>
             </fieldset>
                     <br><br>
-            <fieldset style="width: 40%"><legend>Links</legend>
+            <fieldset style="width: 50%"><legend>Links</legend>
                 <a href="index.jsp">Pagina Inicial</a>
             </fieldset>
         </div>

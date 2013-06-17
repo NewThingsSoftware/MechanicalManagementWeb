@@ -21,7 +21,7 @@
                 <form name="formIncluirPeca" action="IncluirPecaServlet" method="POST"
                       onsubmit="return validaForm(this)">
                     <input type="hidden" name="codOrdemServico" value="<%out.print(request.getParameter("cod"));%>" />
-                    <label for="peca">Peça</label>
+                    <label for="peca">Peça: </label>
                     <select name="peca" id="peca">
                         <%for (Peca peca : new PecaDAO().obterTodos()) {%>
                         <option value="<%out.print(peca.getCodPeca());%>">
@@ -29,10 +29,11 @@
                             <%}%>
                     </select>
                     &nbsp&nbsp
-                    <label for="quantidade">Quantidade</label>
+                    <label for="quantidade">Quantidade: </label>
                     <input type="text" name="quantidade" id="quantidade" value="" size="6" maxlength="10" />
+                    <i>(Un.)</i>
                     <br /><br />
-                    <input type="submit" value="Incluir Peça!" name="btIncluirPeca" />
+                    <input type="submit" value="Incluir Peça a OS!" name="btIncluirPeca" />
                 </form>
             </fieldset>
         </div>
